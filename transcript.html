@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transcripts | Christiaan Vogel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+      <h1 class="logo">Christiaan Vogel</h1>
+      <nav class="nav" style="display:flex; align-items:center; gap:2rem;">
+        <ul class="nav-links" style="display:flex; gap:1.5rem; list-style:none; margin:0; padding:0;">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="certifications.html">Certifications</a></li>
+          <li><a href="transcript.html">Transcript</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="toggle-switch">
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="hero">
+    <h2>Academic Transcripts</h2>
+    <p>Select your institution to view the transcript.</p>
+
+    <div class="transcript-grid">
+      <!-- NMU Tile -->
+      <div class="transcript-card"
+           onclick="openModalHTML(`
+             <h3>Nelson Mandela University</h3>
+             <p>Dip (Information Tech: Software Dev) — 2021 &amp; 2022</p>
+             <div style='overflow-x:auto;'>
+               <table class='transcript-table'>
+                 <thead>
+                   <tr>
+                     <th>Year</th>
+                     <th>Code</th>
+                     <th>Module</th>
+                     <th>Final Mark</th>
+                     <th>Result</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr><td>2021</td><td>WCI1011</td><td>Systems Software I: IT Essentials</td><td>99</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>ITS1010</td><td>Information Technology Skills I</td><td>81</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>ONT1030</td><td>Development Software I</td><td>97</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>WCI1010</td><td>Systems Software I: Networks</td><td>75</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>WIH1020</td><td>Information Systems 1A</td><td>89</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>WIH1040</td><td>Information Systems 1B</td><td>75</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2022</td><td>ITP2020</td><td>Internet Programming II</td><td>82</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2022</td><td>PRT1030</td><td>Technical Programming I</td><td>85</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2022</td><td>WIH2010</td><td>Information Systems II</td><td>78</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2022</td><td>ONT2030</td><td>Development Software II</td><td>70</td><td>Pass</td></tr>
+                 </tbody>
+               </table>
+             </div>
+           `)">
+        <img src="images/nmu-thumb.jpg" alt="NMU Thumbnail" />
+        <p class="pdf-label">Nelson Mandela University</p>
+      </div>
+
+      <!-- Eduvos Tile -->
+<div class="transcript-card"
+     onclick="openModalHTML(`
+       <h3>Eduvos Transcript</h3>
+       <p>BSc IT (Software Engineering) – Campus Full Time</p>
+       <div style='overflow-x:auto; margin-top:1rem;'>
+         <table class='transcript-table' style='min-width:800px;'>
+           <thead>
+             <tr>
+               <th>Year</th>
+               <th>Code</th>
+               <th>Module</th>
+               <th>Final Mark</th>
+               <th>Result</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr><td>2023</td><td>ITWCA1</td><td>Technical Writing and Communication</td><td>76</td><td>Pass with Distinction</td></tr>
+             <tr><td>2023</td><td>ITMTA1</td><td>Mathematics 1A</td><td>64</td><td>Pass</td></tr>
+             <tr><td>2023</td><td>ITHIA1</td><td>Human Computer Interaction</td><td>73</td><td>Pass</td></tr>
+             <tr><td>2023</td><td>ITISA1</td><td>Introduction to Information Systems</td><td>71</td><td>Pass</td></tr>
+             <tr><td>2023</td><td>ITPPA1</td><td>Procedural Programming</td><td>99</td><td>Pass with Distinction</td></tr>
+             <tr><td>2023</td><td>SSBEA1</td><td>Business English</td><td>82</td><td>Pass with Distinction</td></tr>
+
+             <tr><td>2024</td><td>ITDCA2</td><td>Data Structures and Algorithms in C#</td><td>71</td><td>Pass</td></tr>
+             <tr><td>2024</td><td>ITDSA2</td><td>Database Systems</td><td>83</td><td>Pass with Distinction</td></tr>
+             <tr><td>2024</td><td>ITPMA2</td><td>IT Project Management</td><td>52</td><td>Pass</td></tr>
+             <tr><td>2024</td><td>ITMBA2</td><td>Mobile Application Development &amp; Big Data</td><td>90</td><td>Pass with Distinction</td></tr>
+             <tr><td>2024</td><td>ITNSA2</td><td>Network Security</td><td>77</td><td>Pass with Distinction</td></tr>
+             <tr><td>2024</td><td>ITSSA2</td><td>Software &amp; Security Engineering</td><td>58</td><td>Pass</td></tr>
+             <tr><td>2024</td><td>ITSEA2</td><td>Software Process, Architecture &amp; QA</td><td>66</td><td>Pass</td></tr>
+             <tr><td>2024</td><td>ITUEA2</td><td>Usability Engineering</td><td>82</td><td>Pass with Distinction</td></tr>
+             <tr><td>2024</td><td>ITCOA2</td><td>Web Server Management</td><td>65</td><td>Pass</td></tr>
+
+             <tr><td>2025</td><td>ITTNA3</td><td>4IR Technologies</td><td>65</td><td>Pass</td></tr>
+             <tr><td>2025</td><td>ITOOA3</td><td>Object Oriented Systems Analysis &amp; Design</td><td>58</td><td>Pass</td></tr>
+             <tr><td>2025</td><td>ITECA3</td><td>Web Development &amp; e-Commerce</td><td>83</td><td>Pass with Distinction</td></tr>
+             <tr><td>2025</td><td>ITDMA3</td><td>Research Design and Methodology</td><td>77</td><td>Pass with Distinction</td></tr>
+           </tbody>
+         </table>
+       </div>
+     `)">
+  <img src="images/edu-vos-thumb.jpg" alt="Eduvos Thumbnail" />
+  <p class="pdf-label">Eduvos</p>
+</div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Christiaan Vogel. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    function openModalHTML(html) {
+      document.getElementById("modal").style.display = "block";
+      document.getElementById("modal-body").innerHTML = html;
+    }
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+  </script>
+  <script src="js/script.js"></script>
+</body>
+</html>
