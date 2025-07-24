@@ -1,0 +1,110 @@
+/* General layout */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+/* Profile photo */
+img.profile-pic {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: contain; /* show full image */
+  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+  font-size: 2.2rem;
+  margin: 10px 0;
+}
+
+h2 {
+  color: #0077cc;
+  margin-top: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Subheading */
+p.subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+/* Sections */
+section {
+  margin: 2rem 0;
+  text-align: left;
+}
+
+ul {
+  padding-left: 1.5rem;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 12px 24px;
+  background-color: #0077cc;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #005fa3;
+}
+
+/* Navigation */
+nav {
+  margin-top: 2.5rem;
+}
+
+nav a {
+  margin: 0 12px;
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  img.profile-pic {
+    width: 160px;
+    height: 160px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  p.subtitle {
+    font-size: 1rem;
+  }
+}
