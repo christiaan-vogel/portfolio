@@ -440,14 +440,23 @@ body.dark-mode .transcript-table thead {
   }
 }
 /* —————————————————————————————
-   Center logo + hamburger on home page (mobile)
+   Center logo & hamburger on index.html only
 ————————————————————————————————— */
+body.home-page .header .container {
+  /* override the global flex-start */
+  align-items: center;
+}
+
+/* space them out a little on mobile */
 @media (max-width: 768px) {
-  .home-page .header .container {
-    justify-content: center;
+  body.home-page .header .container {
+    /* ensure they stack vertically */
+    flex-direction: column;
   }
-  .home-page .logo,
-  .home-page .menu-toggle {
-    margin: 0 auto;
+  /* center the logo and the button */
+  body.home-page .logo,
+  body.home-page .menu-toggle {
+    margin: 0.5rem auto;
   }
 }
+
