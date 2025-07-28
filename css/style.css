@@ -482,3 +482,46 @@ body.dark-mode .transcript-table thead {
     margin: 0.5rem 0;
   }
 }
+@media (max-width: 768px) {
+  /* 1) Stack & center the header’s children */
+  .header .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  /* 2) Show the hamburger in the center */
+  .menu-toggle {
+    display: block;        /* ensure it’s visible */
+    margin: 1rem auto;     /* center it */
+  }
+
+  /* 3) Center the logo above it */
+  .logo {
+    margin: 0.5rem auto;   /* center text */
+  }
+
+  /* 4) Make the dropdown itself a column, centered */
+  .nav-links {
+    display: none;         /* hidden until toggled */
+    flex-direction: column;
+    align-items: center;   /* center the <li> items */
+    text-align: center;    /* center link text */
+    margin: 0;             /* reset any old margins */
+  }
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* 5) Space out each menu item evenly */
+  .nav-links li {
+    margin: 0.5rem 0;
+    width: auto;
+  }
+  .nav-links li a {
+    display: block;
+    padding: 0.5rem 1rem;
+  }
+}
