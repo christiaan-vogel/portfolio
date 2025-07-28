@@ -440,23 +440,45 @@ body.dark-mode .transcript-table thead {
   }
 }
 /* —————————————————————————————
-   Center logo & hamburger on index.html only
+   CENTER LOGO & HAMBURGER + MENU ITEMS
+   on all pages at mobile widths
 ————————————————————————————————— */
-body.home-page .header .container {
-  /* override the global flex-start */
-  align-items: center;
-}
-
-/* space them out a little on mobile */
 @media (max-width: 768px) {
-  body.home-page .header .container {
-    /* ensure they stack vertically */
+  /* Stack logo + button vertically and center them */
+  .header .container {
     flex-direction: column;
+    align-items: center;
+    padding: 1rem;
   }
-  /* center the logo and the button */
-  body.home-page .logo,
-  body.home-page .menu-toggle {
+
+  /* Center the logo */
+  .header .logo {
     margin: 0.5rem auto;
   }
-}
 
+  /* Center the hamburger */
+  .menu-toggle {
+    display: block;       /* ensure it’s visible */
+    margin: 0.5rem auto;
+  }
+
+  /* Make the dropdown menu full‑width, vertical, and center its items */
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background: var(--header-bg);
+    padding: 0.5rem 0;
+    display: none;        /* hidden until toggled */
+  }
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Center each link (and the toggle‑switch) */
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+}
