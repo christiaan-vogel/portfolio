@@ -47,6 +47,7 @@ body {
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); }
 h2 { font-size: clamp(1.25rem, 4vw, 2rem); text-transform: uppercase; letter-spacing: 1px; }
 p  { font-size: clamp(1rem, 3vw, 1.125rem); }
@@ -54,23 +55,27 @@ p  { font-size: clamp(1rem, 3vw, 1.125rem); }
 /* —————————————————————————————
    3. Header & Navigation
 ————————————————————————————————— */
-.header {
-  background-color: var(--header-bg);
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: relative;
   z-index: 10;
 }
+
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--text-color);
 }
+
 .nav {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
+
 .nav-links {
   display: flex;
   gap: 1.5rem;
@@ -78,101 +83,29 @@ p  { font-size: clamp(1rem, 3vw, 1.125rem); }
   margin: 0;
   padding: 0;
 }
+
 .nav-links a {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 500;
   transition: color 0.3s ease;
 }
+
 .nav-links a:hover {
   color: var(--accent-color);
 }
 
 /* —————————————————————————————
-   Header Container (desktop + mobile)
-————————————————————————————————— */
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-  position: relative;
-  z-index: 10;
-}
-
-/* Hamburger button (hidden desktop) */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 20; /* sit above nav-links */
-}
-.menu-toggle .bar {
-  display: block;
-  width: 24px;
-  height: 3px;
-  margin: 5px 0;
-  background-color: var(--text-color);
-  transition: background-color 0.3s ease;
-}
-
-/* Nav default (desktop) */
-.nav {
-  display: flex;
-  align-items: center;
-}
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
-.toggle-switch {
-  margin-left: 1rem;
-}
-
-/* —————————————————————————————
-   Mobile Overrides (≤768px)
-————————————————————————————————— */
-@media (max-width: 768px) {
-  .header .container {
-    padding: 0 1rem;
-  }
-
-  /* show hamburger, hide desktop nav-links */
-  .menu-toggle {
-    display: block;
-  }
-  .nav-links {
-    position: absolute;
-    top: 100%;      /* just below header */
-    left: 0;
-    right: 0;
-    background: var(--header-bg);
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    display: none;  /* hidden until toggled */
-  }
-  .nav-links.active {
-    display: flex;
-  }
-
-  /* shrink gap between toggle‑switch & links */
-  .toggle-switch {
-    margin-left: 0.5rem;
-  }
-}
-
-
-/* —————————————————————————————
-   4. Hamburger Menu (mobile)
+   4. Hamburger Menu (desktop hidden)
 ————————————————————————————————— */
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 20;
 }
+
 .menu-toggle .bar {
   display: block;
   width: 24px;
@@ -188,17 +121,20 @@ p  { font-size: clamp(1rem, 3vw, 1.125rem); }
 .toggle-switch {
   margin-left: 1rem;
 }
+
 .switch {
   position: relative;
   display: inline-block;
   width: 44px;
   height: 24px;
 }
+
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
+
 .slider {
   position: absolute;
   cursor: pointer;
@@ -207,6 +143,7 @@ p  { font-size: clamp(1rem, 3vw, 1.125rem); }
   border-radius: 24px;
   transition: 0.4s;
 }
+
 .slider:before {
   position: absolute;
   content: "";
@@ -218,9 +155,11 @@ p  { font-size: clamp(1rem, 3vw, 1.125rem); }
   transition: 0.4s;
   border-radius: 50%;
 }
+
 input:checked + .slider {
   background-color: var(--accent-color);
 }
+
 input:checked + .slider:before {
   transform: translateX(20px);
 }
@@ -232,19 +171,15 @@ input:checked + .slider:before {
   padding: 2rem;
   text-align: center;
 }
+
 .profile-img {
-  /* bump up the min/max sizes */
   width: clamp(150px, 35vw, 200px);
   height: clamp(150px, 35vw, 200px);
   object-fit: cover;
   border-radius: 50%;
+  display: block;
+  margin: 0 auto 1rem;
 }
-
-
-.profile-img { width: clamp(180px, 40vw, 240px); height: clamp(180px, 40vw, 240px); }
-.transcript-card { min-height: 350px; }
-.transcript-card img { height: 200px; }
-
 
 /* —————————————————————————————
    7. Button (.btn)
@@ -263,6 +198,7 @@ input:checked + .slider:before {
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   transition: opacity 0.3s ease, transform 0.2s ease;
 }
+
 .btn:hover {
   opacity: 0.9;
   transform: translateY(-2px);
@@ -277,6 +213,7 @@ input:checked + .slider:before {
   gap: 2rem;
   padding: 2rem;
 }
+
 .project-card {
   background-color: var(--header-bg);
   border-radius: 10px;
@@ -287,15 +224,18 @@ input:checked + .slider:before {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .project-card:hover {
   transform: translateY(-5px);
 }
+
 .project-tags {
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+
 .project-tags span {
   background-color: var(--project-tag-bg) !important;
   color: var(--project-tag-color) !important;
@@ -303,9 +243,11 @@ input:checked + .slider:before {
   border-radius: 5px;
   font-size: 0.8rem;
 }
+
 .project-links {
   margin-top: 1rem;
 }
+
 .project-links a {
   margin-right: 1rem;
   padding: 0.9rem 1.2rem;
@@ -315,6 +257,7 @@ input:checked + .slider:before {
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
+
 .project-links a:hover {
   background-color: var(--project-btn-hover) !important;
 }
@@ -330,24 +273,34 @@ input:checked + .slider:before {
   padding: 2rem;
   overflow-x: auto;
 }
+
 .cert-card,
 .transcript-card {
+  background: var(--header-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* pick a min-height that fits your thumbnail + label comfortably */
   min-height: 300px;
 }
+
 .cert-card:hover,
 .transcript-card:hover {
   transform: translateY(-5px);
 }
+
 .cert-card img,
 .transcript-card img {
   width: 100%;
-  height: 260px;          /* same for every card */
-  object-fit: cover;      /* crop uniformly */
+  height: 180px;
+  object-fit: cover;
 }
+
 .pdf-label {
   font-size: 0.85rem;
   padding: 0.5rem;
@@ -364,21 +317,24 @@ input:checked + .slider:before {
   overflow: hidden;
   background-color: var(--header-bg);
 }
-/* keep the inline min-width:800px for wide tables */
+
 .transcript-table th,
 .transcript-table td {
   padding: 1rem;
   text-align: left;
   border-bottom: 1px solid #ccc;
 }
+
 body.light-mode .transcript-table thead {
   background-color: var(--header-bg);
   color: #000;
 }
+
 body.dark-mode .transcript-table thead {
   background-color: var(--accent-color);
   color: white;
 }
+
 .transcript-table tr:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
@@ -394,6 +350,7 @@ body.dark-mode .transcript-table thead {
   width: 100%; height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
 .modal-content {
   margin: 5% auto;
   padding: 1rem;
@@ -406,12 +363,13 @@ body.dark-mode .transcript-table thead {
   overflow-y: auto;
   overflow-x: auto;
 }
+
 .modal-content iframe,
 .modal-content img {
   width: 100%;
   height: auto;
-  max-height: 60vh;
 }
+
 .close-btn {
   float: right;
   font-size: 1.5rem;
@@ -435,20 +393,32 @@ body.dark-mode .transcript-table thead {
    13. Responsive Overrides
 ————————————————————————————————— */
 @media (max-width: 768px) {
-  .menu-toggle { display: block; }
+  .header .container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
   .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    position: static;
+    display: none;
+    width: 100%;
     background-color: var(--header-bg);
     flex-direction: column;
     gap: 1rem;
-    padding: 1rem;
-    display: none;
+    padding: 0.5rem 0;
+    margin: 0.5rem 0 0 0;
   }
   .nav-links.active {
     display: flex;
+  }
+
+  .toggle-switch {
+    margin: 0.5rem 1rem 0;
   }
 }
 
@@ -458,9 +428,14 @@ body.dark-mode .transcript-table thead {
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1rem;
+    justify-items: center;
   }
+
   .project-card,
   .transcript-card {
+    max-width: 320px;
+    width: 100%;
+    margin: 0 auto;
     padding: 1rem;
   }
 }
