@@ -5,133 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects | Christiaan Vogel</title>
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-    }
-
-    .project-card {
-      background-color: var(--header-bg);
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .project-card h3 {
-      margin-top: 0;
-      color: var(--text-color);
-    }
-
-    .project-card p {
-      color: var(--text-color);
-    }
-
-    .project-tags {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .project-tags span {
-      background-color: var(--accent-color);
-      color: #fff;
-      padding: 0.3rem 0.7rem;
-      border-radius: 5px;
-      font-size: 0.8rem;
-    }
-
-    .project-links {
-      margin-top: 1rem;
-    }
-
-    .project-links a {
-      margin-right: 1rem;
-      padding: 0.5rem 1rem;
-      background-color: var(--accent-color);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .project-links a:hover {
-      background-color: #1a76d2;
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-  </style>
 </head>
 <body class="light-mode">
   <header class="header">
-  <div class="container">
-    <h1 class="logo">Christiaan Vogel</h1>
-    <button class="menu-toggle" aria-label="Toggle menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-    <nav class="nav">
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="certifications.html">Certifications</a></li>
-        <li><a href="transcript.html">Transcript</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li class="toggle-switch">
-          <label class="switch">
-            <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
-            <span class="slider"></span>
-          </label>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
+    <div class="container">
+      <h1 class="logo">Christiaan Vogel</h1>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="certifications.html">Certifications</a></li>
+          <li><a href="transcript.html">Transcript</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li class="toggle-switch">
+            <label class="switch">
+              <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
+              <span class="slider"></span>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <main class="hero">
     <h2>Projects</h2>
     <p>Here are some of the software and web projects I've worked on recently.</p>
     <div class="projects-grid">
-
-      <!-- Project 1: Mzansi Market -->
       <div class="project-card">
-  <h3>Mzansi Market</h3>
-  <p>University project for a fictional South African e-commerce startup. 
-     Built with HTML, CSS, JavaScript and PHP. Includes product listings, 
-     categories, a cart system, and checkout flow.</p>
-  <div class="project-tags">
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>PHP</span>  <!-- new -->
-  </div>
-  <div class="project-links">
-    <a href="https://mzansimarket.is-best.net"
-       target="_blank">
-       Live Demo
-    </a>
-  </div>
-</div>
+        <h3>Mzansi Market</h3>
+        <p>University project for a fictional South African e-commerce startup.
+           Built with HTML, CSS, JavaScript and PHP. Includes product listings,
+           categories, a cart system, and checkout flow.</p>
+        <div class="project-tags">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>PHP</span>
+        </div>
+        <div class="project-links">
+          <a href="https://mzansimarket.is-best.net" target="_blank">Live Demo</a>
+        </div>
+      </div>
 
-
-      <!-- Project 2: SEAC Electricians -->
       <div class="project-card">
         <h3>SEAC Electricians Website</h3>
         <p>Freelance website for a registered Cape Town electrician. Fully responsive, built with HTML, CSS, and JavaScript. Features services overview, company info, and a working contact form.</p>
@@ -144,7 +65,6 @@
           <a href="https://seac.co.za" target="_blank">Live Site</a>
         </div>
       </div>
-
     </div>
   </main>
 
@@ -153,6 +73,5 @@
   </footer>
 
   <script src="js/script.js"></script>
-
 </body>
 </html>
