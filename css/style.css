@@ -439,10 +439,15 @@ body.dark-mode .transcript-table thead {
     padding: 1rem;
   }
 }
+/* —————————————————————————————
+   Center logo + hamburger on home page (mobile)
+————————————————————————————————— */
 @media (max-width: 768px) {
-  /* On mobile only, for the index page, center logo & hamburger */
-  body.index-page .header .container {
-    /* keep the column layout, but center everything */
-    align-items: center;
+  .home-page .header .container {
+    justify-content: center;
+  }
+  .home-page .logo,
+  .home-page .menu-toggle {
+    margin: 0 auto;
   }
 }
