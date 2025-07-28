@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('theme-toggle');
   const body   = document.body;
 
-  // 1. Check saved theme or system preference
+  // 1. Initial theme
   const savedTheme = localStorage.getItem('theme');
   const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const useDark    = savedTheme === 'dark' || (!savedTheme && systemDark);
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   body.classList.toggle('light-mode', !useDark);
   if (toggle) toggle.checked = useDark;
 
-  // 2. On user toggle, save preference
+  // 2. Toggle theme
   if (toggle) {
     toggle.addEventListener('change', () => {
       const darkNow = toggle.checked;

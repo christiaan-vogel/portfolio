@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Transcripts | Christiaan Vogel</title>
+  <title>Transcripts | Christiaan Vogel</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="light-mode">
@@ -37,46 +37,42 @@
     <h2>Academic Transcripts</h2>
     <p>Select your institution to view the transcript.</p>
     <div class="transcript-grid">
-      <!-- NMU Tile -->
-      <div class="transcript-card"
-           onclick="openModalHTML(`
-             <h3>Nelson Mandela University</h3>
-             <p>Dip (Information Tech: Software Dev) — 2021 &amp; 2022</p>
-             <div style='overflow-x:auto;'>
-               <table class='transcript-table'>
-                 <thead>
-                   <tr><th>Year</th><th>Code</th><th>Module</th><th>Final Mark</th><th>Result</th></tr>
-                 </thead>
-                 <tbody>
-                   <tr><td>2021</td><td>WCI1011</td><td>Systems Software I: IT Essentials</td><td>99</td><td>Distinction</td></tr>
-                   <!-- …other rows… -->
-                   <tr><td>2022</td><td>ONT2030</td><td>Development Software II</td><td>70</td><td>Pass</td></tr>
-                 </tbody>
-               </table>
-             </div>
-           `)">
+      <div class="transcript-card" onclick="openModalHTML(`
+        <h3>Nelson Mandela University</h3>
+        <p>Dip (Information Tech: Software Dev) — 2021 &amp; 2022</p>
+        <div style='overflow-x:auto;'>
+          <table class='transcript-table'>
+            <thead>
+              <tr><th>Year</th><th>Code</th><th>Module</th><th>Final Mark</th><th>Result</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2021</td><td>WCI1011</td><td>Systems Software I</td><td>99</td><td>Distinction</td></tr>
+              <!-- … -->
+              <tr><td>2022</td><td>ONT2030</td><td>Development Software II</td><td>70</td><td>Pass</td></tr>
+            </tbody>
+          </table>
+        </div>
+      `)">
         <img src="images/nmu-thumb.jpg" alt="NMU Thumbnail" />
         <p class="pdf-label">Nelson Mandela University</p>
       </div>
 
-      <!-- Eduvos Tile -->
-      <div class="transcript-card"
-           onclick="openModalHTML(`
-             <h3>Eduvos Transcript</h3>
-             <p>BSc IT (Software Engineering) – Campus Full Time</p>
-             <div style='overflow-x:auto; margin-top:1rem;'>
-               <table class='transcript-table' style='min-width:800px;'>
-                 <thead>
-                   <tr><th>Year</th><th>Code</th><th>Module</th><th>Final Mark</th><th>Result</th></tr>
-                 </thead>
-                 <tbody>
-                   <tr><td>2023</td><td>ITWCA1</td><td>Technical Writing and Communication</td><td>76</td><td>Distinction</td></tr>
-                   <!-- …other rows… -->
-                   <tr><td>2025</td><td>ITDMA3</td><td>Research Design and Methodology</td><td>77</td><td>Distinction</td></tr>
-                 </tbody>
-               </table>
-             </div>
-           `)">
+      <div class="transcript-card" onclick="openModalHTML(`
+        <h3>Eduvos Transcript</h3>
+        <p>BSc IT (Software Engineering) – Campus Full Time</p>
+        <div style='overflow-x:auto; margin-top:1rem;'>
+          <table class='transcript-table' style='min-width:800px;'>
+            <thead>
+              <tr><th>Year</th><th>Code</th><th>Module</th><th>Final Mark</th><th>Result</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2023</td><td>ITWCA1</td><td>Technical Writing</td><td>76</td><td>Distinction</td></tr>
+              <!-- … -->
+              <tr><td>2025</td><td>ITDMA3</td><td>Research Design</td><td>77</td><td>Distinction</td></tr>
+            </tbody>
+          </table>
+        </div>
+      `)">
         <img src="images/edu-vos-thumb.jpg" alt="Eduvos Thumbnail" />
         <p class="pdf-label">Eduvos</p>
       </div>
