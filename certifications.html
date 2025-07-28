@@ -3,32 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Certifications | Christiaan Vogel</title>
+  <title>Certifications | Christiaan Vogel</title>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .cert-card {
+      background: var(--header-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+    .cert-card:hover {
+      transform: translateY(-5px);
+    }
+    .cert-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .pdf-label {
+      font-size: 0.85rem;
+      padding: 0.5rem;
+      color: var(--text-color);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      margin: 5% auto;
+      padding: 1rem;
+      width: 90%;
+      max-width: 900px;
+      background-color: #fff;
+      border-radius: 8px;
+    }
+    .modal-content iframe, .modal-content img {
+      width: 100%;
+      height: 600px;
+    }
+    .modal-content ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+    .close-btn {
+      float: right;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  </style>
 </head>
 <body class="light-mode">
   <header class="header">
-    <div class="container">
-      <h1 class="logo">Christiaan Vogel</h1>
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-      <nav class="nav">
-        <ul class="nav-links">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 class="logo">Christiaan Vogel</h1>
+      <nav class="nav" style="display: flex; align-items: center; gap: 2rem;">
+        <ul class="nav-links" style="display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0;">
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="certifications.html">Certifications</a></li>
           <li><a href="transcript.html">Transcript</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li class="toggle-switch">
-            <label class="switch">
-              <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
-              <span class="slider"></span>
-            </label>
-          </li>
         </ul>
+        <div class="toggle-switch">
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
+            <span class="slider"></span>
+          </label>
+        </div>
       </nav>
     </div>
   </header>
@@ -37,39 +98,64 @@
     <h2>Certifications</h2>
     <p>A collection of completed courses and achievements.</p>
     <div class="cert-grid">
-      <div class="cert-card" onclick="openModalHTML(`
-        <h3>📜 Sophos Certifications</h3>
-        <ul>
-          <li>MSP01 - Sophos MSP Connect - Sales Consultant</li>
-          <!-- … -->
-          <li>SU01 - Sales Fundamentals 2025 Update</li>
-        </ul>
-        <p>Issued by Sophos.</p>
-      `)">
-        <img src="images/sophos-thumb.jpg" alt="Sophos Certificate" />
-        <p class="pdf-label">Sophos</p>
-      </div>
-      <div class="cert-card" onclick="openModalHTML(`
-        <h3>📜 Acronis Academy Certifications</h3>
-        <ul>
-          <li>Cloud Tech Associate: Advanced Disaster Recovery</li>
-          <!-- … -->
-        </ul>
-        <p>Issued by Acronis.</p>
-      `)">
-        <img src="images/acronis-thumb.jpg" alt="Acronis Certificate" />
-        <p class="pdf-label">Acronis</p>
-      </div>
-      <div class="cert-card" onclick="openModalHTML(`
-        <h3>📜 ESET Certification</h3>
-        <ul>
-          <li>Certified ESET MSP Administrator Specialist v2</li>
-        </ul>
-        <p>Issued by ESET.</p>
-      `)">
-        <img src="images/eset-thumb.jpg" alt="ESET Certificate" />
-        <p class="pdf-label">ESET</p>
-      </div>
+      
+      <!-- Vendor group: Sophos -->
+      <div class="cert-card"
+     onclick="openModalHTML(`
+       <h3>📜 Sophos Certifications</h3>
+       <ul>
+         <li>MSP01 - Sophos MSP Connect - Sales Consultant</li>
+         <li>SC01 - Sales Fundamentals - Sales Consultant</li>
+         <li>CSP01 - Sophos Cloud Security</li>
+         <li>SU01 - Sales Fundamentals 2021 Update</li>
+         <li>SU01 - Sales Fundamentals 2022 Update</li>
+         <li>SC02 - Selling MDR and Cybersecurity as a Service v1.0 - Sales Consultant</li>
+         <li>SU01 - Sales Fundamentals 2023 Update</li>
+         <li>ET15 - Sophos Central Endpoint Protection Certified Engineer v5.0</li>
+         <li>S15 - Sophos Central Endpoint Protection Certified Technician v5.0</li>
+         <li>ET87 - Sophos Firewall v20.0 Email Protection</li>
+         <li>ET12 - Sophos Detection and Response Certified Engineer v5.5</li>
+         <li>SC02 - Sophos Detection and Response Certified Engineer v5.5</li>
+         <li>SU02 - Selling MDR and Cybersecurity as a Service v1.0→v2.0 Delta</li>
+         <li>ET80 - Sophos Firewall Certified Engineer v21.0</li>
+         <li>EU80 - Sophos Firewall v21.0→v21.5 Delta</li>
+         <li>SU01 - Sales Fundamentals 2025 Update</li>
+       </ul>
+       <p>Each course issued by Sophos with completion certificates signed by Joe or Kris (CEOs at the time).</p>
+     `)">
+  <img src="images/sophos-thumb.jpg" alt="Sophos Certificate" />
+  <p class="pdf-label">Sophos</p>
+</div>
+
+      <!-- Vendor group: Acronis -->
+      <div class="cert-card"
+     onclick="openModalHTML(`
+       <h3>📜 Acronis Academy Certifications</h3>
+       <ul>
+         <li>Cloud Tech Associate: Advanced Disaster Recovery</li>
+         <li>Cloud Tech Associate: Advanced Backup</li>
+         <li>Basic Course Certified: Intro to Acronis</li>
+         <li>Basic Course Certified: M365</li>
+       </ul>
+       <p>Each issued by Acronis and signed by CEO Ezequiel Steiner.</p>
+     `)">
+  <img src="images/acronis-thumb.jpg" alt="Acronis Certificate" />
+  <p class="pdf-label">Acronis</p>
+</div>
+
+      <!-- Vendor group: ESET -->
+      <div class="cert-card"
+     onclick="openModalHTML(`
+       <h3>📜 ESET Certification</h3>
+       <ul>
+         <li>Certified ESET MSP Administrator Specialist v2</li>
+       </ul>
+       <p>Completed using ESET PROTECT Cloud version 5.x</p>
+     `)">
+  <img src="images/eset-thumb.jpg" alt="ESET Certificate" />
+  <p class="pdf-label">ESET</p>
+</div>
+
     </div>
   </main>
 
@@ -81,15 +167,33 @@
     </div>
   </div>
 
+  <footer class="footer">
+    <p>&copy; 2025 Christiaan Vogel. All rights reserved.</p>
+  </footer>
+
   <script>
-    function openModalHTML(html) {
-      document.getElementById("modal").style.display = "block";
-      document.getElementById("modal-body").innerHTML = html;
+    
+    function openModal(src, isPDF = false) {
+      const modal = document.getElementById("modal");
+      const body = document.getElementById("modal-body");
+      modal.style.display = "block";
+      body.innerHTML = isPDF
+        ? `<iframe src="${src}" frameborder="0"></iframe>`
+        : `<img src="${src}" alt="Certificate Preview"/>`;
     }
+
+    function openModalHTML(html) {
+      const modal = document.getElementById("modal");
+      const body = document.getElementById("modal-body");
+      modal.style.display = "block";
+      body.innerHTML = html;
+    }
+
     function closeModal() {
       document.getElementById("modal").style.display = "none";
     }
   </script>
   <script src="js/script.js"></script>
+
 </body>
 </html>

@@ -1,24 +1,16 @@
 /* style.css */
 
 /* —————————————————————————————
-   0. Reset & Base
+   0. Sticky footer
 ————————————————————————————————— */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 html, body {
   height: 100%;
+  margin: 0;
 }
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 main {
   flex: 1;
@@ -38,6 +30,7 @@ main {
   --project-btn-bg: #1e90ff;
   --project-btn-hover: #1a76d2;
 }
+
 body.dark-mode {
   --bg-color: #121212;
   --text-color: #f0f0f0;
@@ -46,34 +39,25 @@ body.dark-mode {
 }
 
 /* —————————————————————————————
-   2. Typography
+   2. Global Body/Text
 ————————————————————————————————— */
-h1 {
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-h2 {
-  font-size: clamp(1.25rem, 4vw, 2rem);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-p {
-  font-size: clamp(1rem, 3vw, 1.125rem);
-}
+h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+h2 { font-size: clamp(1.25rem, 4vw, 2rem); text-transform: uppercase; letter-spacing: 1px; }
+p  { font-size: clamp(1rem, 3vw, 1.125rem); }
 
 /* —————————————————————————————
    3. Header & Navigation
 ————————————————————————————————— */
 .header {
   background-color: var(--header-bg);
-  width: 100%;
-}
-.header .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: relative;
   z-index: 10;
 }
@@ -81,20 +65,6 @@ p {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--text-color);
-}
-.menu-toggle {
-  display: none; /* shown on mobile */
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 20;
-}
-.menu-toggle .bar {
-  width: 24px;
-  height: 3px;
-  margin: 5px 0;
-  background-color: var(--text-color);
-  transition: background-color 0.3s ease;
 }
 .nav {
   display: flex;
@@ -105,10 +75,8 @@ p {
   display: flex;
   gap: 1.5rem;
   list-style: none;
-}
-.nav-links li {
-  display: flex;
-  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 .nav-links a {
   text-decoration: none;
@@ -119,14 +87,31 @@ p {
 .nav-links a:hover {
   color: var(--accent-color);
 }
-/* push the toggle to the far right on desktop */
-.nav-links .toggle-switch {
-  margin-left: auto;
+
+/* —————————————————————————————
+   4. Hamburger Menu (mobile)
+————————————————————————————————— */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.menu-toggle .bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  margin: 5px 0;
+  background-color: var(--text-color);
+  transition: background-color 0.3s ease;
 }
 
 /* —————————————————————————————
-   4. Dark‑Mode Toggle Switch
+   5. Toggle Switch
 ————————————————————————————————— */
+.toggle-switch {
+  margin-left: 1rem;
+}
 .switch {
   position: relative;
   display: inline-block;
@@ -165,27 +150,28 @@ input:checked + .slider:before {
 }
 
 /* —————————————————————————————
-   5. Hero & Profile Image
+   6. Hero Section
 ————————————————————————————————— */
 .hero {
   padding: 2rem;
   text-align: center;
 }
 .profile-img {
+  /* bump up the min/max sizes */
   width: clamp(150px, 35vw, 200px);
   height: clamp(150px, 35vw, 200px);
   object-fit: cover;
   border-radius: 50%;
-  display: block;
-  margin: 0 auto 1rem;
-}
-/* extra space above CV button */
-.hero .btn {
-  margin-top: 2rem;
 }
 
+
+.profile-img { width: clamp(180px, 40vw, 240px); height: clamp(180px, 40vw, 240px); }
+.transcript-card { min-height: 350px; }
+.transcript-card img { height: 200px; }
+
+
 /* —————————————————————————————
-   6. Buttons (.btn)
+   7. Button (.btn)
 ————————————————————————————————— */
 .btn {
   display: inline-flex;
@@ -207,7 +193,7 @@ input:checked + .slider:before {
 }
 
 /* —————————————————————————————
-   7. Projects Grid
+   8. Projects: Grid, Tags & Links
 ————————————————————————————————— */
 .projects-grid {
   display: grid;
@@ -258,7 +244,7 @@ input:checked + .slider:before {
 }
 
 /* —————————————————————————————
-   8. Certifications & Transcripts Grids
+   9. Certifications & Transcripts Grids
 ————————————————————————————————— */
 .cert-grid,
 .transcript-grid {
@@ -270,16 +256,10 @@ input:checked + .slider:before {
 }
 .cert-card,
 .transcript-card {
-  background: var(--header-bg);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* pick a min-height that fits your thumbnail + label comfortably */
   min-height: 300px;
 }
 .cert-card:hover,
@@ -289,8 +269,8 @@ input:checked + .slider:before {
 .cert-card img,
 .transcript-card img {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
+  height: 260px;          /* same for every card */
+  object-fit: cover;      /* crop uniformly */
 }
 .pdf-label {
   font-size: 0.85rem;
@@ -299,7 +279,7 @@ input:checked + .slider:before {
 }
 
 /* —————————————————————————————
-   9. Transcript Tables
+   10. Transcript Tables
 ————————————————————————————————— */
 .transcript-table {
   width: 100%;
@@ -308,6 +288,7 @@ input:checked + .slider:before {
   overflow: hidden;
   background-color: var(--header-bg);
 }
+/* keep the inline min-width:800px for wide tables */
 .transcript-table th,
 .transcript-table td {
   padding: 1rem;
@@ -320,23 +301,21 @@ body.light-mode .transcript-table thead {
 }
 body.dark-mode .transcript-table thead {
   background-color: var(--accent-color);
-  color: #fff;
+  color: white;
 }
 .transcript-table tr:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* —————————————————————————————
-   10. Modal Styles
+   11. Modal Styles
 ————————————————————————————————— */
 .modal {
   display: none;
   position: fixed;
   z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
 }
 .modal-content {
@@ -355,6 +334,7 @@ body.dark-mode .transcript-table thead {
 .modal-content img {
   width: 100%;
   height: auto;
+  max-height: 60vh;
 }
 .close-btn {
   float: right;
@@ -365,7 +345,7 @@ body.dark-mode .transcript-table thead {
 }
 
 /* —————————————————————————————
-   11. Footer
+   12. Footer
 ————————————————————————————————— */
 .footer {
   background-color: var(--header-bg);
@@ -376,42 +356,35 @@ body.dark-mode .transcript-table thead {
 }
 
 /* —————————————————————————————
-   12. Mobile Responsive (≤768px)
+   13. Responsive Overrides
 ————————————————————————————————— */
 @media (max-width: 768px) {
-  .header .container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
-  .logo {
-    margin: 0.5rem auto;
-  }
-  .menu-toggle {
-    display: block;
-    margin: 0.5rem auto;
-  }
+  .menu-toggle { display: block; }
   .nav-links {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     background-color: var(--header-bg);
+    flex-direction: column;
     gap: 1rem;
-    padding: 0.5rem 0;
+    padding: 1rem;
+    display: none;
   }
   .nav-links.active {
     display: flex;
   }
-  .nav-links li {
-    width: 100%;
-    margin: 0.5rem 0;
+}
+
+@media (max-width: 600px) {
+  .projects-grid,
+  .transcript-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
   }
-  .nav-links li a {
-    display: block;
-    width: 100%;
-    padding: 0.5rem 1rem;
+  .project-card,
+  .transcript-card {
+    padding: 1rem;
   }
 }
