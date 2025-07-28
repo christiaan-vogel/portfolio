@@ -418,3 +418,52 @@ body.dark-mode .transcript-table thead {
     padding: 0.5rem 1rem;
   }
 }
+/* —————————————————————————————
+   Mobile Responsive (≤768px)—single block
+————————————————————————————————— */
+@media (max-width: 768px) {
+  /* Header stacks and centers everything */
+  .header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  /* Show & center the hamburger */
+  .menu-toggle {
+    display: block;
+    margin: 0.5rem auto;
+  }
+
+  /* Center the logo */
+  .logo {
+    margin: 0.5rem auto;
+  }
+
+  /* Dropdown full-width & centered */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    background-color: var(--header-bg);
+    gap: 1rem;
+    padding: 0.5rem 0;
+    margin: 0;   /* reset any leftover */
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links li {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  .nav-links li a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
+}
