@@ -1,5 +1,3 @@
-/* style.css */
-
 /* —————————————————————————————
    0. Sticky footer
 ————————————————————————————————— */
@@ -17,7 +15,7 @@ main {
 }
 
 /* —————————————————————————————
-   1. CSS Variables (Light & Dark)
+   1. CSS Variables
 ————————————————————————————————— */
 :root {
   --bg-color: #ffffff;
@@ -28,8 +26,21 @@ main {
   --project-tag-bg: #28a745;
   --project-tag-color: #ffffff;
   --project-btn-bg: #1e90ff;
-  --project-btn-hover: #1a76d2;
+  --project-btn-hover: #1e90ff;
 }
+
+/* —————————————————————————————
+   Profile Image (small, round, centered)
+————————————————————————————————— */
+.profile-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
 
 body.dark-mode {
   --bg-color: #121212;
@@ -47,9 +58,6 @@ body {
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); }
-h2 { font-size: clamp(1.25rem, 4vw, 2rem); text-transform: uppercase; letter-spacing: 1px; }
-p  { font-size: clamp(1rem, 3vw, 1.125rem); }
 
 /* —————————————————————————————
    3. Header & Navigation
@@ -58,25 +66,11 @@ p  { font-size: clamp(1rem, 3vw, 1.125rem); }
   background-color: var(--header-bg);
   padding: 1rem 2rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  position: relative;
-  z-index: 10;
 }
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--text-color);
-}
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 .nav-links a {
   text-decoration: none;
@@ -89,25 +83,7 @@ p  { font-size: clamp(1rem, 3vw, 1.125rem); }
 }
 
 /* —————————————————————————————
-   4. Hamburger Menu (mobile)
-————————————————————————————————— */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.menu-toggle .bar {
-  display: block;
-  width: 24px;
-  height: 3px;
-  margin: 5px 0;
-  background-color: var(--text-color);
-  transition: background-color 0.3s ease;
-}
-
-/* —————————————————————————————
-   5. Toggle Switch
+   4. Toggle Switch
 ————————————————————————————————— */
 .toggle-switch {
   margin-left: 1rem;
@@ -150,28 +126,15 @@ input:checked + .slider:before {
 }
 
 /* —————————————————————————————
-   6. Hero Section
+   5. Hero Section
 ————————————————————————————————— */
 .hero {
   padding: 2rem;
   text-align: center;
 }
-.profile-img {
-  /* bump up the min/max sizes */
-  width: clamp(150px, 35vw, 200px);
-  height: clamp(150px, 35vw, 200px);
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-
-.profile-img { width: clamp(180px, 40vw, 240px); height: clamp(180px, 40vw, 240px); }
-.transcript-card { min-height: 350px; }
-.transcript-card img { height: 200px; }
-
 
 /* —————————————————————————————
-   7. Button (.btn)
+   6. Button (.btn)
 ————————————————————————————————— */
 .btn {
   display: inline-flex;
@@ -179,7 +142,7 @@ input:checked + .slider:before {
   gap: 0.5rem;
   background-color: var(--accent-color);
   color: #fff;
-  padding: 0.9rem 1.2rem;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 6px;
   font-weight: 600;
@@ -193,50 +156,18 @@ input:checked + .slider:before {
 }
 
 /* —————————————————————————————
-   8. Projects: Grid, Tags & Links
+   7. Projects: Tags & Links
 ————————————————————————————————— */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-}
-.project-card {
-  background-color: var(--header-bg);
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.project-card:hover {
-  transform: translateY(-5px);
-}
-.project-tags {
-  margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
 .project-tags span {
   background-color: var(--project-tag-bg) !important;
   color: var(--project-tag-color) !important;
-  padding: 0.3rem 0.7rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-}
-.project-links {
-  margin-top: 1rem;
 }
 .project-links a {
-  margin-right: 1rem;
-  padding: 0.9rem 1.2rem;
   background-color: var(--project-btn-bg) !important;
   color: #fff !important;
-  text-decoration: none;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
+  text-decoration: none;
   transition: background-color 0.3s ease;
 }
 .project-links a:hover {
@@ -244,54 +175,38 @@ input:checked + .slider:before {
 }
 
 /* —————————————————————————————
-   9. Certifications & Transcripts Grids
+   8. Modal content readability
 ————————————————————————————————— */
-.cert-grid,
-.transcript-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-  overflow-x: auto;
+.modal-content {
+  background-color: var(--header-bg) !important;
+  color: var(--text-color)     !important;
 }
-.cert-card,
-.transcript-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* pick a min-height that fits your thumbnail + label comfortably */
-  min-height: 300px;
-}
-.cert-card:hover,
-.transcript-card:hover {
-  transform: translateY(-5px);
-}
-.cert-card img,
-.transcript-card img {
-  width: 100%;
-  height: 260px;          /* same for every card */
-  object-fit: cover;      /* crop uniformly */
-}
-.pdf-label {
-  font-size: 0.85rem;
-  padding: 0.5rem;
+
+/* —————————————————————————————
+   9. Footer
+————————————————————————————————— */
+.footer {
+  background-color: var(--header-bg);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
   color: var(--text-color);
 }
 
 /* —————————————————————————————
-   10. Transcript Tables
+   10. Transcript Table Styling
 ————————————————————————————————— */
 .transcript-table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 6px;
   overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
   background-color: var(--header-bg);
 }
-/* keep the inline min-width:800px for wide tables */
 .transcript-table th,
 .transcript-table td {
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: left;
   border-bottom: 1px solid #ccc;
 }
@@ -308,7 +223,39 @@ body.dark-mode .transcript-table thead {
 }
 
 /* —————————————————————————————
-   11. Modal Styles
+   11. Transcript Grid & Cards
+————————————————————————————————— */
+.transcript-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+.transcript-card {
+  background: var(--header-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+.transcript-card:hover {
+  transform: translateY(-5px);
+}
+.transcript-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.pdf-label {
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  color: var(--text-color);
+}
+
+/* —————————————————————————————
+   12. Transcript Modal Styling
 ————————————————————————————————— */
 .modal {
   display: none;
@@ -323,18 +270,13 @@ body.dark-mode .transcript-table thead {
   padding: 1rem;
   width: 90%;
   max-width: 900px;
-  background-color: var(--header-bg) !important;
+  background-color: var(--header-bg);
   border-radius: 8px;
   color: var(--text-color);
-  max-height: 80vh;
-  overflow-y: auto;
-  overflow-x: auto;
 }
-.modal-content iframe,
-.modal-content img {
-  width: 100%;
-  height: auto;
-  max-height: 60vh;
+.modal-content .transcript-table {
+  background: transparent;
+  box-shadow: none;
 }
 .close-btn {
   float: right;
@@ -343,48 +285,15 @@ body.dark-mode .transcript-table thead {
   color: #333;
   cursor: pointer;
 }
-
-/* —————————————————————————————
-   12. Footer
-————————————————————————————————— */
-.footer {
-  background-color: var(--header-bg);
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: var(--text-color);
+/* Make the grid of cards horizontally scrollable */
+.transcript-grid {
+  overflow-x: auto;
+  /* keep the grid layout, but allow horizontal scroll */
 }
 
-/* —————————————————————————————
-   13. Responsive Overrides
-————————————————————————————————— */
-@media (max-width: 768px) {
-  .menu-toggle { display: block; }
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--header-bg);
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    display: none;
-  }
-  .nav-links.active {
-    display: flex;
-  }
+/* Ensure the modal box scrolls if the table is taller than the viewport */
+.modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
-@media (max-width: 600px) {
-  .projects-grid,
-  .transcript-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1rem;
-  }
-  .project-card,
-  .transcript-card {
-    padding: 1rem;
-  }
-}
