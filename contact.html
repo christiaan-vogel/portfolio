@@ -64,26 +64,60 @@
   </style>
 </head>
 <body class="light-mode">
+  
   <header class="header">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-      <h1 class="logo">Christiaan Vogel</h1>
-      <nav class="nav" style="display: flex; align-items: center; gap: 2rem;">
-        <ul class="nav-links" style="display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0;">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="certifications.html">Certifications</a></li>
-          <li><a href="transcript.html">Transcript</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="toggle-switch">
-          <label class="switch">
-            <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </nav>
+  <div class="container header-inner">
+    <button class="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="hamburger" aria-hidden="true"></span>
+    </button>
+
+    <h1 class="logo">Christiaan Vogel</h1>
+
+    <!-- Desktop nav (still visible on wide viewports) -->
+    <nav class="nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="transcript.html">Transcript</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <!-- optional desktop theme toggle; hidden on mobile via CSS -->
+      <div class="toggle-switch">
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile menu overlay -->
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+  <div class="menu-content" role="dialog" aria-modal="true" aria-label="Main menu">
+    <button class="close-menu" aria-label="Close menu">&times;</button>
+    <nav>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="menu-link">Home</a></li>
+        <li><a href="projects.html" class="menu-link">Projects</a></li>
+        <li><a href="certifications.html" class="menu-link">Certifications</a></li>
+        <li><a href="transcript.html" class="menu-link">Transcript</a></li>
+        <li><a href="contact.html" class="menu-link">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="theme-toggle-wrapper">
+      <label class="theme-label">
+        Dark Mode
+        <label class="switch">
+          <input type="checkbox" id="mobile-theme-toggle" aria-label="Toggle theme">
+          <span class="slider"></span>
+        </label>
+      </label>
     </div>
-  </header>
+  </div>
+</div>
+
 
   <main class="hero">
     <h2>Contact Me</h2>
