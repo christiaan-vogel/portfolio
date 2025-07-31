@@ -255,6 +255,16 @@ body {
   color: var(--text-color);
 }
 
+body.light-mode .menu-content {
+  background-color: #f4f4f4;
+  color: #1f1f1f;
+}
+body.dark-mode .menu-content {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+
 /* responsive tweaks */
 @media (max-width: 800px) {
   .nav .nav-links,
@@ -449,13 +459,13 @@ input:checked + .slider:before {
   text-align: left;
   border-bottom: 1px solid #ccc;
 }
-body.light-mode .menu-content {
-  background-color: #f4f4f4;
-  color: #1f1f1f;
+body.light-mode .transcript-table thead {
+  background-color: var(--header-bg);
+  color: #000;
 }
-body.dark-mode .menu-content {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
+body.dark-mode .transcript-table thead {
+  background-color: var(--accent-color);
+  color: white;
 }
 .transcript-table tr:hover {
   background-color: rgba(0, 0, 0, 0.05);
