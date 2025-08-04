@@ -1,126 +1,151 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.getElementById('theme-toggle');
-  const body   = document.body;
+// ---------- THEME HANDLING ----------
+const root = document.documentElement;
+const desktopToggle = document.getElementById('theme-toggle');
+const mobileToggle = document.getElementById('mobile-theme-toggle');
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-  // 1. Check saved theme or system preference
-  const savedTheme    = localStorage.getItem('theme');
-  const systemDark    = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const useDark       = savedTheme === 'dark' || (!savedTheme && systemDark);
+function applyTheme(isDark, persist = true) {
+  root.classList.toggle('dark-mode', isDark);
+  root.classList.toggle('light-mode', !isDark);
+  if (desktopToggle) desktopToggle.checked = isDark;
+  if (mobileToggle) mobileToggle.checked = isDark;
+  if (persist) localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
 
-  body.classList.toggle('dark-mode', useDark);
-  body.classList.toggle('light-mode', !useDark);
-  if (toggle) toggle.checked = useDark;
-
-  // 2. On user toggle, save preference
-  if (toggle) {
-    toggle.addEventListener('change', () => {
-      const darkNow = toggle.checked;
-      body.classList.toggle('dark-mode', darkNow);
-      body.classList.toggle('light-mode', !darkNow);
-      localStorage.setItem('theme', darkNow ? 'dark' : 'light');
-    });
-  }
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const desktopToggle = document.getElementById('theme-toggle');
-  const mobileToggle = document.getElementById('mobile-theme-toggle');
-  const body = document.body;
-
-  // THEME HANDLING (shared for desktop + mobile)
+// initialize theme
+(function initTheme() {
   const savedTheme = localStorage.getItem('theme');
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const useDark = savedTheme === 'dark' || (!savedTheme && systemDark);
+  const systemPrefersDark = mediaQuery.matches;
+  const isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+  applyTheme(isDark, false);
 
-  function applyTheme(isDark) {
-    body.classList.toggle('dark-mode', isDark);
-    body.classList.toggle('light-mode', !isDark);
-    if (desktopToggle) desktopToggle.checked = isDark;
-    if (mobileToggle) mobileToggle.checked = isDark;
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  }
-
-  applyTheme(useDark);
-
-  // Attach listeners
-  if (desktopToggle) {
-    desktopToggle.addEventListener('change', () => {
-      applyTheme(desktopToggle.checked);
-    });
-  }
-  if (mobileToggle) {
-    mobileToggle.addEventListener('change', () => {
-      applyTheme(mobileToggle.checked);
-    });
-  }
-
-  // MOBILE MENU
-  const menuButton = document.querySelector('.menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const closeMenuButton = document.querySelector('.close-menu');
-  const menuLinks = document.querySelectorAll('.menu-link');
-
-  function openMenu() {
-    if (!mobileMenu) return;
-    mobileMenu.classList.add('open');
-    if (menuButton) {
-      menuButton.classList.add('open');
-      menuButton.setAttribute('aria-expanded', 'true');
+  // if user hasn't explicitly chosen, respond to system changes
+  if (!savedTheme) {
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', (e) => applyTheme(e.matches, false));
+    } else if (typeof mediaQuery.addListener === 'function') {
+      mediaQuery.addListener((e) => applyTheme(e.matches, false));
     }
-    mobileMenu.setAttribute('aria-hidden', 'false');
-    // prevent background scroll
-    document.body.style.overflow = 'hidden';
-    // focus first link for accessibility
-    setTimeout(() => {
-      const firstLink = mobileMenu.querySelector('.mobile-nav-links a');
-      if (firstLink) firstLink.focus();
-    }, 100);
   }
+})();
 
-  function closeMenu() {
-    if (!mobileMenu) return;
-    mobileMenu.classList.remove('open');
-    if (menuButton) {
-      menuButton.classList.remove('open');
-      menuButton.setAttribute('aria-expanded', 'false');
-    }
-    mobileMenu.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    if (menuButton) menuButton.focus();
-  }
+// toggle listeners
+if (desktopToggle) {
+  desktopToggle.addEventListener('change', () => {
+    applyTheme(desktopToggle.checked);
+  });
+}
+if (mobileToggle) {
+  mobileToggle.addEventListener('change', () => {
+    applyTheme(mobileToggle.checked);
+  });
+}
 
+// ---------- MOBILE MENU ----------
+const menuButton = document.querySelector('.menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenuButton = document.querySelector('.close-menu');
+const menuLinks = document.querySelectorAll('.menu-link');
+
+function openMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.add('open');
+  mobileMenu.setAttribute('aria-hidden', 'false');
   if (menuButton) {
-    menuButton.addEventListener('click', () => {
-      if (mobileMenu && mobileMenu.classList.contains('open')) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
+    menuButton.classList.add('open');
+    menuButton.setAttribute('aria-expanded', 'true');
   }
-  if (closeMenuButton) {
-    closeMenuButton.addEventListener('click', () => {
-      closeMenu();
-    });
-  }
+  document.body.style.overflow = 'hidden'; // lock background
+  // focus first link for accessibility
+  setTimeout(() => {
+    const firstLink = mobileMenu.querySelector('.mobile-nav-links a');
+    if (firstLink) firstLink.focus();
+  }, 100);
+}
 
-  // Close when clicking outside content
-  if (mobileMenu) {
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) closeMenu();
-    });
+function closeMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  if (menuButton) {
+    menuButton.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.focus();
   }
+  document.body.style.overflow = '';
+}
 
-  // Close on Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
+if (menuButton) {
+  menuButton.addEventListener('click', () => {
+    if (mobileMenu && mobileMenu.classList.contains('open')) {
       closeMenu();
+    } else {
+      openMenu();
     }
   });
-
-  // Close menu when a link is clicked
-  menuLinks.forEach((lnk) => {
-    lnk.addEventListener('click', () => {
-      closeMenu();
-    });
+}
+if (closeMenuButton) {
+  closeMenuButton.addEventListener('click', closeMenu);
+}
+if (mobileMenu) {
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) closeMenu();
+  });
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeMenu();
+    closeModal(); // also close modal if open
+  }
+});
+menuLinks.forEach((lnk) => {
+  lnk.addEventListener('click', () => {
+    closeMenu();
   });
 });
+
+// ---------- MODAL LOGIC ----------
+const modal = document.getElementById('modal');
+const modalBody = document.getElementById('modal-body');
+
+function openModalHTML(html) {
+  if (!modal || !modalBody) return;
+  modalBody.innerHTML = html;
+  modal.style.display = 'block';
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden'; // lock background scroll
+
+  // focus management: focus heading if present, else first focusable
+  const heading = modalBody.querySelector('h1, h2, h3, [role="heading"]');
+  if (heading) {
+    heading.setAttribute('tabindex', '-1');
+    heading.focus();
+  } else {
+    const focusable = modalBody.querySelector('button, a, [tabindex]:not([tabindex="-1"])');
+    if (focusable) focusable.focus();
+  }
+}
+
+function closeModal() {
+  if (!modal) return;
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// clicking outside content
+if (modal) {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  // delegate close button if it's inside dynamic content
+  modal.addEventListener('click', (e) => {
+    if (e.target.matches('.close-btn')) {
+      closeModal();
+    }
+  });
+}
+
+// expose to global if inline handlers rely on it
+window.openModalHTML = openModalHTML;
+window.closeModal = closeModal;

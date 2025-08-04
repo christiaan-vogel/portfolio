@@ -268,16 +268,6 @@ main {
   color: var(--text-color);
 }
 
-/* explicit theming adjustments for menu content (if needed) */
-body.light-mode .menu-content {
-  background-color: var(--header-bg);
-  color: var(--text-color);
-}
-body.dark-mode .menu-content {
-  background-color: var(--header-bg);
-  color: var(--text-color);
-}
-
 /* responsive tweaks */
 @media (max-width: 800px) {
   .nav .nav-links,
@@ -411,6 +401,7 @@ input:checked + .slider:before {
   background-color: rgba(0, 0, 0, 0.8);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   z-index: 999;
 }
 
@@ -422,6 +413,7 @@ input:checked + .slider:before {
   max-height: 90vh;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   background-color: var(--header-bg);
   border-radius: 8px;
   color: var(--text-color);
@@ -436,6 +428,7 @@ input:checked + .slider:before {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-x;
+  overscroll-behavior: contain;
   min-width: 0;
 }
 
