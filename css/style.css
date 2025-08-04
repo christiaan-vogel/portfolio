@@ -135,7 +135,9 @@ button, a {
   position: relative;
   z-index: 60;
 }
-.hamburger, .hamburger::before, .hamburger::after {
+.hamburger,
+.hamburger::before,
+.hamburger::after {
   content: '';
   display: block;
   width: 24px;
@@ -318,8 +320,8 @@ input:checked + .slider::before {
    10. Transcript Cards & Tables
 ————————————————————————————————— */
 .transcript-card {
-  max-width: 320px;
-  width: 100%;
+  width: 90%;
+  max-width: 360px;
   background: var(--header-bg);
   border-radius: 8px;
   overflow: hidden;
@@ -435,8 +437,12 @@ html.dark-mode .transcript-table thead {
   }
 }
 
-
-/* ensure headings in the modal never show that focus outline */
-.modal-content h3:focus-visible {
-  outline: none;
+/* —————————————————————————————
+   13. Mobile: one-up, centred transcript cards
+————————————————————————————————— */
+@media (max-width: 600px) {
+  .transcript-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 }
