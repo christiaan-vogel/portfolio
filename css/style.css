@@ -427,7 +427,8 @@ input:checked + .slider:before {
 .horizontal-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
+  /* allow vertical parent scrolling when interacting inside */
+  touch-action: auto;
   overscroll-behavior: contain;
   min-width: 0;
 }
