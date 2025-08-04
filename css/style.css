@@ -427,11 +427,11 @@ input:checked + .slider:before {
 .horizontal-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  /* allow vertical parent scrolling when interacting inside */
-  touch-action: auto;
+  touch-action: pan-x pan-y; /* explicitly permit both */
   overscroll-behavior: contain;
   min-width: 0;
 }
+
 
 /* transcript grid/cards */
 .transcript-grid {
