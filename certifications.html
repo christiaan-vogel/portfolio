@@ -6,13 +6,16 @@
   <title>Certifications | Christiaan Vogel</title>
   
     <script>
-      (function() {
-        const saved = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const useDark = saved === 'dark' || (!saved && prefersDark);
-        document.documentElement.classList.add(useDark ? 'dark-mode' : 'light-mode');
-      })();
-    </script>
+  (function() {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const useDark = saved === 'dark' || (!saved && prefersDark);
+    const modeClass = useDark ? 'dark-mode' : 'light-mode';
+    document.documentElement.classList.add(modeClass);
+    document.body.classList.add(modeClass);
+  })();
+</script>
+
 
 
   <link rel="stylesheet" href="css/style.css" />
@@ -83,7 +86,7 @@
     }
   </style>
 </head>
-<body class="light-mode">
+<body>
   
   <header class="header">
   <div class="container header-inner">
