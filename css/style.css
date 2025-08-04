@@ -414,7 +414,7 @@ input:checked + .slider:before {
   overflow: auto;
   overflow-x: hidden; /* horizontal is handled by inner wrapper */
   -webkit-overflow-scrolling: touch;
-  touch-action: auto;
+  touch-action: pan-y;
   overscroll-behavior: contain;
   background-color: var(--header-bg);
   border-radius: 8px;
@@ -429,7 +429,7 @@ input:checked + .slider:before {
 .horizontal-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x pan-y; /* allow both horizontal and vertical gestures */
+  touch-action: pan-x;
   overscroll-behavior: contain;
   min-width: 0;
 }

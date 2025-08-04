@@ -157,3 +157,42 @@ if (modalContent) {
     e.stopPropagation(); // keep the scroll within the modal
   }, { passive: false });
 }
+
+// improve vertical scroll when starting over .horizontal-scroll
+(function() {
+  let startX = 0;
+  let startY = 0;
+  let isVertical = false;
+
+  const modalContent = document.querySelector('.modal-content');
+  if (!modalContent) return;
+
+  document.querySelectorAll('.horizontal-scroll').forEach((wrapper) => {
+    wrapper.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      isVertical = false;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchmove', (e) => {
+      const t = e.touches[0];
+      const dx = Math.abs(t.clientX - startX);
+      const dy = Math.abs(t.clientY - startY);
+
+      // decide intent once: vertical if dy noticeably exceeds dx
+      if (!isVertical && dy > dx + 5) {
+        isVertical = true;
+      }
+
+      if (isVertical) {
+        // take over vertical scroll for the modal
+        e.preventDefault(); // stop horizontal-scroll from interfering
+        const deltaY = startY - t.clientY;
+        modalContent.scrollTop += deltaY;
+        startY = t.clientY; // update for next increment
+      }
+      // if horizontal intent, do nothing so native horizontal scroll works
+    }, { passive: false });
+  });
+})();
