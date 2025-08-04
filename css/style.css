@@ -311,9 +311,8 @@ input:checked + .slider::before {
   display: grid;
   gap: 1.5rem;
   padding: 2rem;
-  overflow-x: auto;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  justify-items: center;
+  /* three-up on large, falling back on smaller screens */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 /* project-card shared styles if needed */
@@ -321,9 +320,25 @@ input:checked + .slider::before {
   width: 100%;
 }
 
+/* ensure headings in the modal never show that focus outline */
+.modal-content h3:focus-visible {
+  outline: none;
+}
+
+
 /* —————————————————————————————
    10. Transcript Cards & Tables
 ————————————————————————————————— */
+
+.transcript-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+  /* 3-up on large, 2-up on tablet, 1-up on mobile */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
+}
+
 .transcript-card {
   background: var(--header-bg);
   border-radius: 8px;
@@ -331,21 +346,30 @@ input:checked + .slider::before {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   cursor: pointer;
   transition: transform 0.3s ease;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .transcript-card:hover,
 .transcript-card:focus-within {
   transform: translateY(-5px);
 }
+/* image takes up the “hero” portion */
 .transcript-card img {
   width: 100%;
-  height: 150px;
+  /* fix height to match your other cards */
+  height: 160px;
   object-fit: cover;
+  flex-shrink: 0;
 }
+
+/* dark bar below the image for the label */
 .pdf-label {
-  padding: 0.5rem;
-  font-size: 0.85rem;
+  background-color: var(--header-bg);
   color: var(--text-color);
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
 }
 
 /* modal & inner scrolling */
