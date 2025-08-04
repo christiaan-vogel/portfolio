@@ -149,3 +149,11 @@ if (modal) {
 // expose to global if inline handlers rely on it
 window.openModalHTML = openModalHTML;
 window.closeModal = closeModal;
+
+// prevent the outer page from stealing touch when inside modal-content
+const modalContent = document.querySelector('.modal-content');
+if (modalContent) {
+  modalContent.addEventListener('touchmove', (e) => {
+    e.stopPropagation(); // keep the scroll within the modal
+  }, { passive: false });
+}
