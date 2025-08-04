@@ -5,73 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Transcripts | Christiaan Vogel</title>
   
-    <script>
-      (function() {
-        const saved = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const useDark = saved === 'dark' || (!saved && prefersDark);
-        document.documentElement.classList.add(useDark ? 'dark-mode' : 'light-mode');
-      })();
-    </script>
-
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const useDark = saved === 'dark' || (!saved && prefersDark);
+      document.documentElement.classList.add(useDark ? 'dark-mode' : 'light-mode');
+    })();
+  </script>
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   
   <header class="header">
-  <div class="container header-inner">
-    <button class="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-      <span class="hamburger" aria-hidden="true"></span>
-    </button>
+    <div class="container header-inner">
+      <button class="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
 
-    <h1 class="logo">Christiaan Vogel</h1>
+      <h1 class="logo">Christiaan Vogel</h1>
 
-    <!-- Desktop nav (still visible on wide viewports) -->
-    <nav class="nav">
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="certifications.html">Certifications</a></li>
-        <li><a href="transcript.html">Transcript</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <!-- optional desktop theme toggle; hidden on mobile via CSS -->
-      <div class="toggle-switch">
-        <label class="switch">
-          <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
-          <span class="slider"></span>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="certifications.html">Certifications</a></li>
+          <li><a href="transcript.html">Transcript</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="toggle-switch">
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle" aria-label="Toggle theme">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="menu-content" role="dialog" aria-modal="true" aria-label="Main menu">
+      <button class="close-menu" aria-label="Close menu">&times;</button>
+      <nav>
+        <ul class="mobile-nav-links">
+          <li><a href="index.html" class="menu-link">Home</a></li>
+          <li><a href="projects.html" class="menu-link">Projects</a></li>
+          <li><a href="certifications.html" class="menu-link">Certifications</a></li>
+          <li><a href="transcript.html" class="menu-link">Transcript</a></li>
+          <li><a href="contact.html" class="menu-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="theme-toggle-wrapper">
+        <label class="theme-label">
+          Dark Mode
+          <label class="switch">
+            <input type="checkbox" id="mobile-theme-toggle" aria-label="Toggle theme">
+            <span class="slider"></span>
+          </label>
         </label>
       </div>
-    </nav>
-  </div>
-</header>
-
-<!-- Mobile menu overlay -->
-<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-  <div class="menu-content" role="dialog" aria-modal="true" aria-label="Main menu">
-    <button class="close-menu" aria-label="Close menu">&times;</button>
-    <nav>
-      <ul class="mobile-nav-links">
-        <li><a href="index.html" class="menu-link">Home</a></li>
-        <li><a href="projects.html" class="menu-link">Projects</a></li>
-        <li><a href="certifications.html" class="menu-link">Certifications</a></li>
-        <li><a href="transcript.html" class="menu-link">Transcript</a></li>
-        <li><a href="contact.html" class="menu-link">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="theme-toggle-wrapper">
-      <label class="theme-label">
-        Dark Mode
-        <label class="switch">
-          <input type="checkbox" id="mobile-theme-toggle" aria-label="Toggle theme">
-          <span class="slider"></span>
-        </label>
-      </label>
     </div>
   </div>
-</div>
-
 
   <main class="hero">
     <h2>Academic Transcripts</h2>
@@ -81,9 +77,9 @@
       <!-- NMU Tile -->
       <div class="transcript-card"
            onclick="openModalHTML(`
-             <h3>Nelson Mandela University</h3>
+             <h3 id='modal-title-nmu'>Nelson Mandela University</h3>
              <p>Dip (Information Tech: Software Dev) — 2021 &amp; 2022</p>
-             <div style='overflow-x:auto;'>
+             <div class='horizontal-scroll'>
                <table class='transcript-table'>
                  <thead>
                    <tr>
@@ -95,16 +91,16 @@
                    </tr>
                  </thead>
                  <tbody>
-                   <tr><td>2021</td><td>WCI1011</td><td>Systems Software I: IT Essentials</td><td>99</td><td>Pass with Distinction</td></tr>
-                   <tr><td>2021</td><td>ITS1010</td><td>Information Technology Skills I</td><td>81</td><td>Pass with Distinction</td></tr>
-                   <tr><td>2021</td><td>ONT1030</td><td>Development Software I</td><td>97</td><td>Pass with Distinction</td></tr>
-                   <tr><td>2021</td><td>WCI1010</td><td>Systems Software I: Networks</td><td>75</td><td>Pass with Distinction</td></tr>
-                   <tr><td>2021</td><td>WIH1020</td><td>Information Systems 1A</td><td>89</td><td>Pass with Distinction</td></tr>
-                   <tr><td>2021</td><td>WIH1040</td><td>Information Systems 1B</td><td>75</td><td>Pass with Distinction</td></tr>
-                   <tr><td>2022</td><td>ITP2020</td><td>Internet Programming II</td><td>82</td><td>Pass with Distinction</td></tr>
-                   <tr><td>2022</td><td>PRT1030</td><td>Technical Programming I</td><td>85</td><td>Pass with Distinction</td></tr>
-                   <tr><td>2022</td><td>WIH2010</td><td>Information Systems II</td><td>78</td><td>Pass with Distinction</td></tr>
-                   <tr><td>2022</td><td>ONT2030</td><td>Development Software II</td><td>70</td><td>Pass</td></tr>
+                   <tr><td>2021</td><td>WCI1011</td><td>Systems Software I: IT Essentials</td><td>99</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>ITS1010</td><td>Information Technology Skills I</td><td>81</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>ONT1030</td><td>Development Software I</td><td>97</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>WCI1010</td><td>Systems Software I: Networks</td><td>75</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>WIH1020</td><td>Information Systems 1A</td><td>89</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2021</td><td>WIH1040</td><td>Information Systems 1B</td><td>75</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2022</td><td>ITP2020</td><td>Internet Programming II</td><td>82</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2022</td><td>PRT1030</td><td>Technical Programming I</td><td>85</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2022</td><td>WIH2010</td><td>Information Systems II</td><td>78</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2022</td><td>ONT2030</td><td>Development Software II</td><td>70</td><td>Pass</td></tr>
                  </tbody>
                </table>
              </div>
@@ -114,51 +110,50 @@
       </div>
 
       <!-- Eduvos Tile -->
-<div class="transcript-card"
-     onclick="openModalHTML(`
-       <h3>Eduvos Transcript</h3>
-       <p>BSc IT (Software Engineering) – Campus Full Time</p>
-       <div style='overflow-x:auto; margin-top:1rem;'>
-         <table class='transcript-table' style='min-width:800px;'>
-           <thead>
-             <tr>
-               <th>Year</th>
-               <th>Code</th>
-               <th>Module</th>
-               <th>Final Mark</th>
-               <th>Result</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr><td>2023</td><td>ITWCA1</td><td>Technical Writing and Communication</td><td>76</td><td>Pass with Distinction</td></tr>
-             <tr><td>2023</td><td>ITMTA1</td><td>Mathematics 1A</td><td>64</td><td>Pass</td></tr>
-             <tr><td>2023</td><td>ITHIA1</td><td>Human Computer Interaction</td><td>73</td><td>Pass</td></tr>
-             <tr><td>2023</td><td>ITISA1</td><td>Introduction to Information Systems</td><td>71</td><td>Pass</td></tr>
-             <tr><td>2023</td><td>ITPPA1</td><td>Procedural Programming</td><td>99</td><td>Pass with Distinction</td></tr>
-             <tr><td>2023</td><td>SSBEA1</td><td>Business English</td><td>82</td><td>Pass with Distinction</td></tr>
+      <div class="transcript-card"
+           onclick="openModalHTML(`
+             <h3 id='modal-title-edu'>Eduvos Transcript</h3>
+             <p>BSc IT (Software Engineering) – Campus Full Time</p>
+             <div class='horizontal-scroll' style='margin-top:1rem;'>
+               <table class='transcript-table' style='min-width:800px;'>
+                 <thead>
+                   <tr>
+                     <th>Year</th>
+                     <th>Code</th>
+                     <th>Module</th>
+                     <th>Final Mark</th>
+                     <th>Result</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr><td>2023</td><td>ITWCA1</td><td>Technical Writing and Communication</td><td>76</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2023</td><td>ITMTA1</td><td>Mathematics 1A</td><td>64</td><td>Pass</td></tr>
+                   <tr><td>2023</td><td>ITHIA1</td><td>Human Computer Interaction</td><td>73</td><td>Pass</td></tr>
+                   <tr><td>2023</td><td>ITISA1</td><td>Introduction to Information Systems</td><td>71</td><td>Pass</td></tr>
+                   <tr><td>2023</td><td>ITPPA1</td><td>Procedural Programming</td><td>99</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2023</td><td>SSBEA1</td><td>Business English</td><td>82</td><td>Pass with Distinction</td></tr>
 
-             <tr><td>2024</td><td>ITDCA2</td><td>Data Structures and Algorithms in C#</td><td>71</td><td>Pass</td></tr>
-             <tr><td>2024</td><td>ITDSA2</td><td>Database Systems</td><td>83</td><td>Pass with Distinction</td></tr>
-             <tr><td>2024</td><td>ITPMA2</td><td>IT Project Management</td><td>52</td><td>Pass</td></tr>
-             <tr><td>2024</td><td>ITMBA2</td><td>Mobile Application Development &amp; Big Data</td><td>90</td><td>Pass with Distinction</td></tr>
-             <tr><td>2024</td><td>ITNSA2</td><td>Network Security</td><td>77</td><td>Pass with Distinction</td></tr>
-             <tr><td>2024</td><td>ITSSA2</td><td>Software &amp; Security Engineering</td><td>58</td><td>Pass</td></tr>
-             <tr><td>2024</td><td>ITSEA2</td><td>Software Process, Architecture &amp; QA</td><td>66</td><td>Pass</td></tr>
-             <tr><td>2024</td><td>ITUEA2</td><td>Usability Engineering</td><td>82</td><td>Pass with Distinction</td></tr>
-             <tr><td>2024</td><td>ITCOA2</td><td>Web Server Management</td><td>65</td><td>Pass</td></tr>
+                   <tr><td>2024</td><td>ITDCA2</td><td>Data Structures and Algorithms in C#</td><td>71</td><td>Pass</td></tr>
+                   <tr><td>2024</td><td>ITDSA2</td><td>Database Systems</td><td>83</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2024</td><td>ITPMA2</td><td>IT Project Management</td><td>52</td><td>Pass</td></tr>
+                   <tr><td>2024</td><td>ITMBA2</td><td>Mobile Application Development &amp; Big Data</td><td>90</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2024</td><td>ITNSA2</td><td>Network Security</td><td>77</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2024</td><td>ITSSA2</td><td>Software &amp; Security Engineering</td><td>58</td><td>Pass</td></tr>
+                   <tr><td>2024</td><td>ITSEA2</td><td>Software Process, Architecture &amp; QA</td><td>66</td><td>Pass</td></tr>
+                   <tr><td>2024</td><td>ITUEA2</td><td>Usability Engineering</td><td>82</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2024</td><td>ITCOA2</td><td>Web Server Management</td><td>65</td><td>Pass</td></tr>
 
-             <tr><td>2025</td><td>ITTNA3</td><td>4IR Technologies</td><td>65</td><td>Pass</td></tr>
-             <tr><td>2025</td><td>ITOOA3</td><td>Object Oriented Systems Analysis &amp; Design</td><td>58</td><td>Pass</td></tr>
-             <tr><td>2025</td><td>ITECA3</td><td>Web Development &amp; e-Commerce</td><td>83</td><td>Pass with Distinction</td></tr>
-             <tr><td>2025</td><td>ITDMA3</td><td>Research Design and Methodology</td><td>77</td><td>Pass with Distinction</td></tr>
-           </tbody>
-         </table>
-       </div>
-     `)">
-  <img src="images/edu-vos-thumb.jpg" alt="Eduvos Thumbnail" />
-  <p class="pdf-label">Eduvos</p>
-</div>
-
+                   <tr><td>2025</td><td>ITTNA3</td><td>4IR Technologies</td><td>65</td><td>Pass</td></tr>
+                   <tr><td>2025</td><td>ITOOA3</td><td>Object Oriented Systems Analysis &amp; Design</td><td>58</td><td>Pass</td></tr>
+                   <tr><td>2025</td><td>ITECA3</td><td>Web Development &amp; e-Commerce</td><td>83</td><td>Pass with Distinction</td></tr>
+                   <tr><td>2025</td><td>ITDMA3</td><td>Research Design and Methodology</td><td>77</td><td>Pass with Distinction</td></tr>
+                 </tbody>
+               </table>
+             </div>
+           `)">
+        <img src="images/edu-vos-thumb.jpg" alt="Eduvos Thumbnail" />
+        <p class="pdf-label">Eduvos</p>
+      </div>
     </div>
   </main>
 
@@ -167,7 +162,7 @@
   </footer>
 
   <!-- Modal -->
-  <div id="modal" class="modal" onclick="closeModal()">
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Transcript preview" aria-hidden="true" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <span class="close-btn" onclick="closeModal()">&times;</span>
       <div id="modal-body"></div>
@@ -175,12 +170,29 @@
   </div>
 
   <script>
+    // close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
     function openModalHTML(html) {
-      document.getElementById("modal").style.display = "block";
+      const modal = document.getElementById("modal");
+      modal.style.display = "block";
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden'; // lock background scroll
       document.getElementById("modal-body").innerHTML = html;
+      const heading = document.getElementById("modal-body").querySelector('h3');
+      if (heading) {
+        heading.setAttribute('tabindex', '-1');
+        heading.focus();
+      }
     }
+
     function closeModal() {
-      document.getElementById("modal").style.display = "none";
+      const modal = document.getElementById("modal");
+      modal.style.display = "none";
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = ''; // restore scroll
     }
   </script>
   <script src="js/script.js"></script>
