@@ -10,22 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
     root.classList.toggle('dark-mode',  isDark);
     root.classList.toggle('light-mode', !isDark);
     if (desktopToggle) desktopToggle.checked = isDark;
-    if (mobileToggle)  mobileToggle.checked = isDark;
+    if (mobileToggle)  mobileToggle.checked  = isDark;
     if (persist) {
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
   }
 
-  // initialize theme
   (function initTheme() {
-    const saved = localStorage.getItem('theme');
-    const useDark = saved === 'dark' || (!saved && mq.matches);
+    const saved    = localStorage.getItem('theme');
+    const useDark  = saved === 'dark' || (!saved && mq.matches);
     applyTheme(useDark, false);
 
     if (!saved) {
       const listener = e => applyTheme(e.matches, false);
-      mq.addEventListener ? mq.addEventListener('change', listener)
-                          : mq.addListener(listener);
+      if (mq.addEventListener) mq.addEventListener('change', listener);
+      else if (mq.addListener) mq.addListener(listener);
     }
   })();
 
@@ -40,24 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openMenu() {
     mobileMenu.classList.add('open');
-    mobileMenu.setAttribute('aria-hidden', 'false');
+    mobileMenu.setAttribute('aria-hidden','false');
     menuButton.classList.add('open');
-    menuButton.setAttribute('aria-expanded', 'true');
+    menuButton.setAttribute('aria-expanded','true');
     document.body.style.overflow = 'hidden';
     setTimeout(() => mobileMenu.querySelector('.mobile-nav-links a')?.focus(), 100);
   }
   function closeMenu() {
     mobileMenu.classList.remove('open');
-    mobileMenu.setAttribute('aria-hidden', 'true');
+    mobileMenu.setAttribute('aria-hidden','true');
     menuButton.classList.remove('open');
-    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-expanded','false');
     menuButton.focus();
     document.body.style.overflow = '';
   }
 
-  menuButton?.addEventListener('click', () => (
+  menuButton?.addEventListener('click', () =>
     mobileMenu.classList.contains('open') ? closeMenu() : openMenu()
-  ));
+  );
   closeMenuBtn?.addEventListener('click', closeMenu);
   mobileMenu?.addEventListener('click', e => {
     if (e.target === mobileMenu) closeMenu();
@@ -65,21 +64,21 @@ document.addEventListener('DOMContentLoaded', () => {
   menuLinks.forEach(a => a.addEventListener('click', closeMenu));
 
   // ---------- MODAL LOGIC ----------
-  const modal       = document.getElementById('modal');
-  const modalBody   = document.getElementById('modal-body');
-  const modalInner  = modal?.querySelector('.modal-content');
-  let lastFocusElem = null;
+  const modal      = document.getElementById('modal');
+  const modalBody  = document.getElementById('modal-body');
+  const modalInner = modal?.querySelector('.modal-content');
+  let lastFocus    = null;
 
   function openModalHTML(html) {
-    lastFocusElem = document.activeElement;
+    lastFocus = document.activeElement;
     modalBody.innerHTML = html;
     modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
+    modal.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
 
     const heading = modalBody.querySelector('h1, h2, h3, [role="heading"]');
     if (heading) {
-      heading.setAttribute('tabindex', '-1');
+      heading.setAttribute('tabindex','-1');
       heading.focus();
     } else {
       modalBody.querySelector('button, a, [tabindex]')?.focus();
@@ -87,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function closeModal() {
     modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('aria-hidden','true');
     document.body.style.overflow = '';
-    lastFocusElem?.focus();
+    lastFocus?.focus();
   }
 
   modal?.addEventListener('click', e => {
@@ -102,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // expose for inline handlers
+  // expose for any inline handlers
   window.openModalHTML = openModalHTML;
   window.closeModal     = closeModal;
 
@@ -119,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       intent = null;
       wrapper = target.closest('.horizontal-scroll');
     }
+
     function onMove(x, y, e) {
       if (!dragging) return;
       const dxTotal = Math.abs(x - startX);
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!intent) {
         if (dyTotal > dxTotal + 5) intent = 'vertical';
         else if (dxTotal > dyTotal + 5) intent = 'horizontal';
-        else return; // ambiguous so far
+        else return;
       }
 
       if (intent === 'vertical') {
@@ -146,18 +146,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (window.PointerEvent) {
       modalInner.addEventListener('pointerdown', e => {
-        if (e.pointerType !== 'touch') return;
-        dragging = true;
-        onDown(e.clientX, e.clientY, e.target);
-        modalInner.setPointerCapture(e.pointerId);
+        if (e.pointerType === 'touch') {
+          dragging = true;
+          onDown(e.clientX, e.clientY, e.target);
+          modalInner.setPointerCapture(e.pointerId);
+        }
       }, { passive: false });
 
       modalInner.addEventListener('pointermove', e => {
-        if (e.pointerType !== 'touch') return;
-        onMove(e.clientX, e.clientY, e);
+        if (dragging && e.pointerType === 'touch') {
+          onMove(e.clientX, e.clientY, e);
+        }
       }, { passive: false });
 
-      modalInner.addEventListener('pointerup',   e => {
+      modalInner.addEventListener('pointerup', e => {
         if (e.pointerType === 'touch') dragging = false;
       });
       modalInner.addEventListener('pointercancel', e => {
