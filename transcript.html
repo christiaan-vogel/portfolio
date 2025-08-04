@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Transcripts | Christiaan Vogel</title>
-
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -14,9 +13,7 @@
       <button class="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span class="hamburger" aria-hidden="true"></span>
       </button>
-
       <h1 class="logo">Christiaan Vogel</h1>
-
       <nav class="nav">
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
@@ -63,14 +60,12 @@
   <main class="hero">
     <h2>Academic Transcripts</h2>
     <p>Select your institution to view the transcript.</p>
-
     <div class="transcript-grid">
       <!-- NMU Tile -->
       <div class="transcript-card" role="button" tabindex="0" aria-label="Nelson Mandela University transcript" data-school="nmu">
         <img src="images/nmu-thumb.jpg" alt="NMU Thumbnail" />
         <p class="pdf-label">Nelson Mandela University</p>
       </div>
-
       <!-- Eduvos Tile -->
       <div class="transcript-card" role="button" tabindex="0" aria-label="Eduvos transcript" data-school="edu">
         <img src="images/edu-vos-thumb.jpg" alt="Eduvos Thumbnail" />
@@ -83,7 +78,7 @@
     <p>&copy; 2025 Christiaan Vogel. All rights reserved.</p>
   </footer>
 
-  <!-- Modal -->
+  <!-- Modal for transcript preview -->
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Transcript preview" aria-hidden="true">
     <div class="modal-content">
       <button class="close-btn" aria-label="Close transcript">&times;</button>
@@ -94,22 +89,17 @@
   <!-- Core behavior script -->
   <script src="js/script.js"></script>
 
-  <!-- Transcript binding -->
+  <!-- Transcript templates & binding -->
   <script>
-    // Templates for transcripts
     const transcriptTemplates = {
       nmu: `
-        <h3 id='modal-title-nmu'>Nelson Mandela University</h3>
+        <h3 id="modal-title-nmu">Nelson Mandela University</h3>
         <p>Dip (Information Tech: Software Dev) — 2021 &amp; 2022</p>
-        <div class='horizontal-scroll'>
-          <table class='transcript-table'>
+        <div class="horizontal-scroll">
+          <table class="transcript-table">
             <thead>
               <tr>
-                <th>Year</th>
-                <th>Code</th>
-                <th>Module</th>
-                <th>Final Mark</th>
-                <th>Result</th>
+                <th>Year</th><th>Code</th><th>Module</th><th>Final Mark</th><th>Result</th>
               </tr>
             </thead>
             <tbody>
@@ -128,17 +118,13 @@
         </div>
       `,
       edu: `
-        <h3 id='modal-title-edu'>Eduvos Transcript</h3>
+        <h3 id="modal-title-edu">Eduvos Transcript</h3>
         <p>BSc IT (Software Engineering) – Campus Full Time</p>
-        <div class='horizontal-scroll' style='margin-top:1rem;'>
-          <table class='transcript-table' style='min-width:800px;'>
+        <div class="horizontal-scroll" style="margin-top:1rem;">
+          <table class="transcript-table" style="min-width:800px;">
             <thead>
               <tr>
-                <th>Year</th>
-                <th>Code</th>
-                <th>Module</th>
-                <th>Final Mark</th>
-                <th>Result</th>
+                <th>Year</th><th>Code</th><th>Module</th><th>Final Mark</th><th>Result</th>
               </tr>
             </thead>
             <tbody>
@@ -148,7 +134,7 @@
               <tr><td>2023</td><td>ITISA1</td><td>Introduction to Information Systems</td><td>71</td><td>Pass</td></tr>
               <tr><td>2023</td><td>ITPPA1</td><td>Procedural Programming</td><td>99</td><td>Pass with Distinction</td></tr>
               <tr><td>2023</td><td>SSBEA1</td><td>Business English</td><td>82</td><td>Pass with Distinction</td></tr>
-
+              
               <tr><td>2024</td><td>ITDCA2</td><td>Data Structures and Algorithms in C#</td><td>71</td><td>Pass</td></tr>
               <tr><td>2024</td><td>ITDSA2</td><td>Database Systems</td><td>83</td><td>Pass with Distinction</td></tr>
               <tr><td>2024</td><td>ITPMA2</td><td>IT Project Management</td><td>52</td><td>Pass</td></tr>
@@ -158,7 +144,7 @@
               <tr><td>2024</td><td>ITSEA2</td><td>Software Process, Architecture &amp; QA</td><td>66</td><td>Pass</td></tr>
               <tr><td>2024</td><td>ITUEA2</td><td>Usability Engineering</td><td>82</td><td>Pass with Distinction</td></tr>
               <tr><td>2024</td><td>ITCOA2</td><td>Web Server Management</td><td>65</td><td>Pass</td></tr>
-
+              
               <tr><td>2025</td><td>ITTNA3</td><td>4IR Technologies</td><td>65</td><td>Pass</td></tr>
               <tr><td>2025</td><td>ITOOA3</td><td>Object Oriented Systems Analysis &amp; Design</td><td>58</td><td>Pass</td></tr>
               <tr><td>2025</td><td>ITECA3</td><td>Web Development &amp; e-Commerce</td><td>83</td><td>Pass with Distinction</td></tr>
@@ -169,34 +155,24 @@
       `
     };
 
-    // attach listeners once DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.transcript-card[data-school]').forEach(card => {
-        const school = card.getAttribute('data-school');
+        const key = card.dataset.school;
         card.addEventListener('click', () => {
-          if (transcriptTemplates[school]) {
-            openModalHTML(transcriptTemplates[school]);
-          }
+          openModalHTML(transcriptTemplates[key]);
         });
-        card.addEventListener('keydown', (e) => {
+        card.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            if (transcriptTemplates[school]) {
-              openModalHTML(transcriptTemplates[school]);
-            }
+            openModalHTML(transcriptTemplates[key]);
           }
         });
       });
 
-      // close button inside modal (delegated)
-      const modal = document.getElementById('modal');
-      if (modal) {
-        modal.addEventListener('click', (e) => {
-          if (e.target.matches('.close-btn')) {
-            closeModal();
-          }
-        });
-      }
+      // Close modal when clicking the ×
+      document.getElementById('modal')?.addEventListener('click', e => {
+        if (e.target.matches('.close-btn')) closeModal();
+      });
     });
   </script>
 </body>

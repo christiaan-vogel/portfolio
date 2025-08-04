@@ -1,5 +1,5 @@
 /* —————————————————————————————
-   0. Global resets & accessibility
+   0. Reset & Accessibility
 ————————————————————————————————— */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -10,39 +10,24 @@ html, body {
   margin: 0;
   scroll-behavior: smooth;
 }
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
 
-/* focus-visible for accessibility */
 :focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
 
-/* reduce motion if user prefers */
+/* reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *, *::before, *::after {
     transition: none !important;
   }
-}
-
-/* better tap handling */
-button, a {
-  touch-action: manipulation;
 }
 
 /* —————————————————————————————
    1. CSS Variables & Theming
 ————————————————————————————————— */
 :root {
-  /* light mode defaults */
+  /* Light mode defaults */
   --bg-color: #ffffff;
   --text-color: #1f1f1f;
   --header-bg: #f4f4f4;
@@ -54,123 +39,117 @@ button, a {
   --project-btn-hover: #1e90ff;
 }
 
-/* dark mode overrides */
+/* Dark mode overrides */
 html.dark-mode {
   --bg-color: #121212;
   --text-color: #f0f0f0;
   --header-bg: #1e1e1e;
   --accent-color: #1e90ff;
 }
-html.light-mode {
-  /* explicit light mode (mirrors :root) */
-  --bg-color: #ffffff;
-  --text-color: #1f1f1f;
-  --header-bg: #f4f4f4;
-  --accent-color: #007bff;
-}
 
 /* —————————————————————————————
-   2. Layout helpers
+   2. Base Layout & Typography
 ————————————————————————————————— */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 main {
   flex: 1;
 }
 
 /* —————————————————————————————
-   3. Profile image
+   3. Images & Media
 ————————————————————————————————— */
 .profile-img {
+  display: block;
+  margin: 0 auto 1rem;
   width: 150px;
   height: 150px;
   object-fit: cover;
   border-radius: 50%;
-  display: block;
-  margin: 0 auto 1rem;
+}
+
+/* better tap handling */
+button, a {
+  touch-action: manipulation;
 }
 
 /* —————————————————————————————
-   4. Header, Navigation & Mobile Menu
+   4. Header & Desktop Navigation
 ————————————————————————————————— */
 .header {
   background: var(--header-bg);
   position: relative;
   z-index: 50;
 }
-.header .header-inner {
-  position: relative;
+.header-inner {
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
 }
-
 .logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0;
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--text-color);
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
 }
-
 .nav {
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
-.nav .nav-links {
+.nav-links {
   display: flex;
   gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.nav .nav-links a {
-  text-decoration: none;
+.nav-links a {
   color: var(--text-color);
+  text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
-.nav .nav-links a:hover,
-.nav .nav-links a:focus {
+.nav-links a:hover,
+.nav-links a:focus {
   color: var(--accent-color);
 }
 
+/* —————————————————————————————
+   5. Mobile Menu
+————————————————————————————————— */
 .menu-button {
+  display: none; /* shown under 800px */
   background: none;
   border: none;
   padding: 0.5rem;
   cursor: pointer;
-  display: none; /* shown on mobile via media query */
-  align-items: center;
-  justify-content: center;
   position: relative;
   z-index: 60;
 }
-.hamburger,
-.hamburger::before,
-.hamburger::after {
+.hamburger, .hamburger::before, .hamburger::after {
   content: '';
   display: block;
-  width: 24px;
-  height: 3px;
+  width: 24px; height: 3px;
   background: var(--text-color);
   border-radius: 3px;
   position: relative;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.hamburger::before,
-.hamburger::after {
-  position: absolute;
-  left: 0;
-}
-.hamburger::before {
-  top: -7px;
-}
-.hamburger::after {
-  top: 7px;
-}
+.hamburger::before { top: -7px; }
+.hamburger::after  { top:  7px; }
 .menu-button.open .hamburger {
   transform: rotate(45deg);
 }
@@ -182,45 +161,44 @@ main {
   opacity: 0;
 }
 
-/* mobile menu overlay */
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 1000;
-  backdrop-filter: blur(4px);
 }
 .mobile-menu.open {
   visibility: visible;
   opacity: 1;
 }
 .menu-content {
-  background-color: var(--header-bg);
+  background: var(--header-bg);
   padding: 2rem;
-  border-radius: 12px;
   width: 90%;
   max-width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
   text-align: center;
   position: relative;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-  color: var(--text-color);
 }
+
 .close-menu {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1rem; right: 1rem;
   background: none;
   border: none;
   font-size: 1.5rem;
-  cursor: pointer;
   color: var(--text-color);
+  cursor: pointer;
 }
+
 .mobile-nav-links {
   list-style: none;
   padding: 0;
@@ -230,65 +208,36 @@ main {
   gap: 1rem;
 }
 .mobile-nav-links a {
-  text-decoration: none;
-  font-size: 1.25rem;
-  color: var(--text-color);
-  font-weight: 600;
   display: block;
-  transition: color .2s ease, opacity .3s ease, transform .3s ease;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-decoration: none;
   opacity: 0;
   transform: translateY(6px);
-}
-.mobile-nav-links a:hover,
-.mobile-nav-links a:focus {
-  color: var(--accent-color);
+  transition: color .2s ease, opacity .3s ease, transform .3s ease;
 }
 .mobile-menu.open .mobile-nav-links a {
   opacity: 1;
   transform: translateY(0);
 }
-.mobile-nav-links a:nth-child(1){ transition-delay: 0.05s; }
-.mobile-nav-links a:nth-child(2){ transition-delay: 0.1s; }
-.mobile-nav-links a:nth-child(3){ transition-delay: 0.15s; }
-.mobile-nav-links a:nth-child(4){ transition-delay: 0.2s; }
-.mobile-nav-links a:nth-child(5){ transition-delay: 0.25s; }
+.mobile-nav-links a:hover,
+.mobile-nav-links a:focus {
+  color: var(--accent-color);
+}
 
+/* —————————————————————————————
+   6. Toggle Switch
+————————————————————————————————— */
+.toggle-switch,
+.theme-toggle-wrapper {
+  margin-left: 1rem;
+}
 .theme-toggle-wrapper {
   margin-top: 1.5rem;
   display: flex;
   justify-content: center;
-  font-size: 1rem;
   gap: 0.5rem;
-}
-.theme-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
-  color: var(--text-color);
-}
-
-/* responsive tweaks */
-@media (max-width: 800px) {
-  .nav .nav-links,
-  .nav .toggle-switch {
-    display: none;
-  }
-  .menu-button {
-    display: flex;
-  }
-}
-@media (min-width: 801px) {
-  .mobile-menu {
-    display: none;
-  }
-}
-
-/* —————————————————————————————
-   5. Toggle Switch (shared)
-————————————————————————————————— */
-.toggle-switch {
-  margin-left: 1rem;
 }
 .switch {
   position: relative;
@@ -298,53 +247,49 @@ main {
 }
 .switch input {
   opacity: 0;
-  width: 0;
-  height: 0;
+  width: 0; height: 0;
 }
 .slider {
   position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  inset: 0;
   background-color: #ccc;
   border-radius: 24px;
   transition: 0.4s;
 }
-.slider:before {
-  position: absolute;
+.slider::before {
   content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
+  position: absolute;
+  width: 18px; height: 18px;
+  left: 3px; bottom: 3px;
+  background: white;
   border-radius: 50%;
+  transition: 0.4s;
 }
 input:checked + .slider {
   background-color: var(--accent-color);
 }
-input:checked + .slider:before {
+input:checked + .slider::before {
   transform: translateX(20px);
 }
 
 /* —————————————————————————————
-   6. Hero
+   7. Hero Section
 ————————————————————————————————— */
 .hero {
-  padding: 2rem;
   text-align: center;
+  padding: 2rem;
 }
 
 /* —————————————————————————————
-   7. Button
+   8. Buttons
 ————————————————————————————————— */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--accent-color);
-  color: #fff;
   padding: 0.75rem 1.5rem;
+  background: var(--accent-color);
+  color: #fff;
   border: none;
   border-radius: 6px;
   font-weight: 600;
@@ -359,91 +304,26 @@ input:checked + .slider:before {
 }
 
 /* —————————————————————————————
-   8. Projects & Tags & Links
+   9. Grids & Projects
 ————————————————————————————————— */
-.project-tags span {
-  background-color: var(--project-tag-bg) !important;
-  color: var(--project-tag-color) !important;
-}
-.project-links a {
-  background-color: var(--project-btn-bg) !important;
-  color: #fff !important;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-.project-links a:hover,
-.project-links a:focus {
-  background-color: var(--project-btn-hover) !important;
-}
-
-/* Projects grid */
-.projects-grid {
+.projects-grid,
+.transcript-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
+  overflow-x: auto;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   justify-items: center;
 }
+
+/* project-card shared styles if needed */
 .project-card {
   width: 100%;
-  max-width: 100%;
 }
 
 /* —————————————————————————————
-   9. Modal content / Transcript
+   10. Transcript Cards & Tables
 ————————————————————————————————— */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  z-index: 999;
-}
-
-.modal-content {
-  margin: 5% auto;
-  padding: 1rem;
-  width: 90%;
-  max-width: 900px;
-  max-height: 90vh;
-  overflow: auto;
-  overflow-x: hidden; /* horizontal is handled by inner wrapper */
-  -webkit-overflow-scrolling: touch;
-  touch-action: none;
-  overscroll-behavior: contain;
-  background-color: var(--header-bg);
-  border-radius: 8px;
-  color: var(--text-color);
-}
-.modal-content .transcript-table {
-  background: transparent;
-  box-shadow: none;
-}
-
-/* horizontal scroll helper */
-.horizontal-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  min-width: 0;
-  touch-action: none; /* disable native so JS handles horizontal vs vertical intent */
-}
-
-
-
-/* transcript grid/cards */
-.transcript-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-  overflow-x: auto;
-}
 .transcript-card {
   background: var(--header-bg);
   border-radius: 8px;
@@ -463,20 +343,57 @@ input:checked + .slider:before {
   object-fit: cover;
 }
 .pdf-label {
-  font-size: 0.85rem;
   padding: 0.5rem;
+  font-size: 0.85rem;
   color: var(--text-color);
 }
 
-/* Transcript table styling: use separate to honor border-radius reliably */
+/* modal & inner scrolling */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  background: rgba(0,0,0,0.8);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  z-index: 999;
+}
+
+.modal-content {
+  margin: 5% auto;
+  padding: 1rem;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: none; /* JS handles scroll intent */
+  background: var(--header-bg);
+  border-radius: 8px;
+  color: var(--text-color);
+}
+
+/* horizontal scroll wrapper for tables */
+.horizontal-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  min-width: 0;
+  touch-action: none; /* JS handles scroll intent */
+}
+
+/* transcript table styling */
 .transcript-table {
   width: 100%;
+  background: var(--header-bg);
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  background-color: var(--header-bg);
 }
 .transcript-table th,
 .transcript-table td {
@@ -484,25 +401,42 @@ input:checked + .slider:before {
   text-align: left;
   border-bottom: 1px solid #ccc;
 }
-body.light-mode .transcript-table thead {
-  background-color: var(--header-bg);
-  color: #000;
+.transcript-table thead {
+  background: var(--header-bg);
 }
-body.dark-mode .transcript-table thead {
-  background-color: var(--accent-color);
-  color: white;
+html.dark-mode .transcript-table thead {
+  background: var(--accent-color);
+  color: #fff;
 }
 .transcript-table tr:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background: rgba(0,0,0,0.05);
 }
 
 /* —————————————————————————————
-   10. Footer
+   11. Footer
 ————————————————————————————————— */
 .footer {
-  background-color: var(--header-bg);
+  background: var(--header-bg);
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
   color: var(--text-color);
+}
+
+/* —————————————————————————————
+   12. Responsive Breakpoints
+————————————————————————————————— */
+@media (max-width: 800px) {
+  .nav-links,
+  .toggle-switch {
+    display: none;
+  }
+  .menu-button {
+    display: flex;
+  }
+}
+@media (min-width: 801px) {
+  .mobile-menu {
+    display: none;
+  }
 }
