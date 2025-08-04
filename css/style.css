@@ -16,7 +16,6 @@ html, body {
   outline-offset: 2px;
 }
 
-/* reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition: none !important;
@@ -27,7 +26,6 @@ html, body {
    1. CSS Variables & Theming
 ————————————————————————————————— */
 :root {
-  /* Light mode defaults */
   --bg-color: #ffffff;
   --text-color: #1f1f1f;
   --header-bg: #f4f4f4;
@@ -39,7 +37,6 @@ html, body {
   --project-btn-hover: #1e90ff;
 }
 
-/* Dark mode overrides */
 html.dark-mode {
   --bg-color: #121212;
   --text-color: #f0f0f0;
@@ -76,7 +73,6 @@ main {
   border-radius: 50%;
 }
 
-/* better tap handling */
 button, a {
   touch-action: manipulation;
 }
@@ -131,7 +127,7 @@ button, a {
    5. Mobile Menu
 ————————————————————————————————— */
 .menu-button {
-  display: none; /* shown under 800px */
+  display: none;
   background: none;
   border: none;
   padding: 0.5rem;
@@ -142,7 +138,8 @@ button, a {
 .hamburger, .hamburger::before, .hamburger::after {
   content: '';
   display: block;
-  width: 24px; height: 3px;
+  width: 24px;
+  height: 3px;
   background: var(--text-color);
   border-radius: 3px;
   position: relative;
@@ -188,17 +185,16 @@ button, a {
   text-align: center;
   position: relative;
 }
-
 .close-menu {
   position: absolute;
-  top: 1rem; right: 1rem;
+  top: 1rem;
+  right: 1rem;
   background: none;
   border: none;
   font-size: 1.5rem;
   color: var(--text-color);
   cursor: pointer;
 }
-
 .mobile-nav-links {
   list-style: none;
   padding: 0;
@@ -215,7 +211,7 @@ button, a {
   text-decoration: none;
   opacity: 0;
   transform: translateY(6px);
-  transition: color .2s ease, opacity .3s ease, transform .3s ease;
+  transition: color 0.2s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 .mobile-menu.open .mobile-nav-links a {
   opacity: 1;
@@ -247,7 +243,8 @@ button, a {
 }
 .switch input {
   opacity: 0;
-  width: 0; height: 0;
+  width: 0;
+  height: 0;
 }
 .slider {
   position: absolute;
@@ -259,8 +256,10 @@ button, a {
 .slider::before {
   content: "";
   position: absolute;
-  width: 18px; height: 18px;
-  left: 3px; bottom: 3px;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  bottom: 3px;
   background: white;
   border-radius: 50%;
   transition: 0.4s;
@@ -311,35 +310,16 @@ input:checked + .slider::before {
   display: grid;
   gap: 1.5rem;
   padding: 2rem;
-  /* three-up on large, falling back on smaller screens */
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  justify-items: center;
 }
-
-/* project-card shared styles if needed */
-.project-card {
-  width: 100%;
-}
-
-/* ensure headings in the modal never show that focus outline */
-.modal-content h3:focus-visible {
-  outline: none;
-}
-
 
 /* —————————————————————————————
    10. Transcript Cards & Tables
 ————————————————————————————————— */
-
-.transcript-grid {
-  display: grid;
-  gap: 1.5rem;
-  padding: 2rem;
-  /* 3-up on large, 2-up on tablet, 1-up on mobile */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  justify-items: center;
-}
-
 .transcript-card {
+  max-width: 320px;
+  width: 100%;
   background: var(--header-bg);
   border-radius: 8px;
   overflow: hidden;
@@ -353,16 +333,12 @@ input:checked + .slider::before {
 .transcript-card:focus-within {
   transform: translateY(-5px);
 }
-/* image takes up the “hero” portion */
 .transcript-card img {
   width: 100%;
-  /* fix height to match your other cards */
   height: 160px;
   object-fit: cover;
   flex-shrink: 0;
 }
-
-/* dark bar below the image for the label */
 .pdf-label {
   background-color: var(--header-bg);
   color: var(--text-color);
@@ -372,7 +348,9 @@ input:checked + .slider::before {
   flex-shrink: 0;
 }
 
-/* modal & inner scrolling */
+/* —————————————————————————————
+   11. Modal & Inner Scrolling
+————————————————————————————————— */
 .modal {
   position: fixed;
   inset: 0;
@@ -383,7 +361,6 @@ input:checked + .slider::before {
   -webkit-overflow-scrolling: touch;
   z-index: 999;
 }
-
 .modal-content {
   margin: 5% auto;
   padding: 1rem;
@@ -394,22 +371,18 @@ input:checked + .slider::before {
   overflow-x: hidden;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
-  touch-action: none; /* JS handles scroll intent */
+  touch-action: none;
   background: var(--header-bg);
   border-radius: 8px;
   color: var(--text-color);
 }
-
-/* horizontal scroll wrapper for tables */
 .horizontal-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   min-width: 0;
-  touch-action: none; /* JS handles scroll intent */
+  touch-action: none;
 }
-
-/* transcript table styling */
 .transcript-table {
   width: 100%;
   background: var(--header-bg);
@@ -437,7 +410,7 @@ html.dark-mode .transcript-table thead {
 }
 
 /* —————————————————————————————
-   11. Footer
+   12. Footer & Responsive Breakpoints
 ————————————————————————————————— */
 .footer {
   background: var(--header-bg);
@@ -447,9 +420,6 @@ html.dark-mode .transcript-table thead {
   color: var(--text-color);
 }
 
-/* —————————————————————————————
-   12. Responsive Breakpoints
-————————————————————————————————— */
 @media (max-width: 800px) {
   .nav-links,
   .toggle-switch {
@@ -463,4 +433,10 @@ html.dark-mode .transcript-table thead {
   .mobile-menu {
     display: none;
   }
+}
+
+
+/* ensure headings in the modal never show that focus outline */
+.modal-content h3:focus-visible {
+  outline: none;
 }
