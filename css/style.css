@@ -414,7 +414,7 @@ input:checked + .slider:before {
   overflow: auto;
   overflow-x: hidden; /* horizontal is handled by inner wrapper */
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
+  touch-action: none;
   overscroll-behavior: contain;
   background-color: var(--header-bg);
   border-radius: 8px;
@@ -429,9 +429,9 @@ input:checked + .slider:before {
 .horizontal-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
   overscroll-behavior: contain;
   min-width: 0;
+  touch-action: none; /* disable native so JS handles horizontal vs vertical intent */
 }
 
 
